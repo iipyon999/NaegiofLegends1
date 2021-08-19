@@ -5,6 +5,7 @@ public class playermanager : MonoBehaviour
 {
     [SerializeField] LayerMask blockLayer;
     [SerializeField] GameManager gameManager;
+    public float dashwait;
 
     //　方向の列挙
     public enum DIRECTION_TYPE 
@@ -18,29 +19,43 @@ public class playermanager : MonoBehaviour
     {
         if (!isDead)
         {
-            dflug = 1;
-            float dspeed;
-            if (transform.localScale.x==1)
+            if(dwait == 0)
             {
-                dspeed = 3f;
+                dflug = 1;
+                float dspeed;
+                if (transform.localScale.x == 1)
+                {
+                    dspeed = 3f;
+                }
+                else
+                {
+                    dspeed = -3f;
+                }
+                dspeed = dspeed * 10f;
+                int dashsecond = 0;
+                while (dashsecond < 20)
+                {
+                    Debug.Log(dashsecond);
+                    dashsecond++;
+                    rigidbody2d.velocity = new Vector2(dspeed, 0);
+                    yield return null;
+                }
+                dflug = 0;
+                dwait = 1;
+                StartCoroutine(Dashwait());
+
+
             }
-            else
-            {
-                dspeed = -3f;
-            }
-            dspeed = dspeed * 10f;
-            int dashsecond = 0;
-            while (dashsecond<20)
-            {
-                Debug.Log(dashsecond);
-                dashsecond++;
-                rigidbody2d.velocity = new Vector2(dspeed, 0);
-                yield return null;
-            }
-            dflug = 0;
 
 
         }
+    }
+
+    IEnumerator Dashwait()
+    {
+        yield return new WaitForSeconds(dashwait);
+        dwait = 0;
+
     }
 
     //初期方向
@@ -63,6 +78,8 @@ public class playermanager : MonoBehaviour
     int canjump = 0;
     //ダッシュ可能かどうか
     int dflug = 0;
+    //ダッシュを待つための関数
+    int dwait = 0;
     
 
     //rigidbody2dを取得する
@@ -145,6 +162,7 @@ public class playermanager : MonoBehaviour
         {
             Debug.Log("Dash");
             StartCoroutine(Dash());
+
         }
 
     }
@@ -257,7 +275,6 @@ public class playermanager : MonoBehaviour
             else
             {
                 //横からぶつかったら
-                Destroy(this.gameObject);
                 PlayerDeath();
 
             }

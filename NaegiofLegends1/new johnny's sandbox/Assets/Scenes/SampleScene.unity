@@ -556,6 +556,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   gameManager: {fileID: 33540299}
+  dashwait: 0.8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
