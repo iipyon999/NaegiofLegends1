@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class playermanager : MonoBehaviour
 {
@@ -13,6 +14,34 @@ public class playermanager : MonoBehaviour
         LEFT,
     }
 
+    IEnumerator Dash()
+    {
+        if (!isDead)
+        {
+            dflug = 1;
+            float dspeed;
+            if (transform.localScale.x==1)
+            {
+                dspeed = 3f;
+            }
+            else
+            {
+                dspeed = -3f;
+            }
+            dspeed = dspeed * 10f;
+            int dashsecond = 0;
+            while (dashsecond<20)
+            {
+                Debug.Log(dashsecond);
+                dashsecond++;
+                rigidbody2d.velocity = new Vector2(dspeed, 0);
+                yield return null;
+            }
+            dflug = 0;
+
+
+        }
+    }
 
     //初期方向
     DIRECTION_TYPE direction = DIRECTION_TYPE.STOP;
@@ -32,6 +61,8 @@ public class playermanager : MonoBehaviour
 
     //ダブルジャンプ可能かどうか
     int canjump = 0;
+    //ダッシュ可能かどうか
+    int dflug = 0;
     
 
     //rigidbody2dを取得する
@@ -110,32 +141,11 @@ public class playermanager : MonoBehaviour
 
         }
 
-
-        /*
-        //接地時の処理を纏めて行う
-        if (IsGround())
+        if (Input.GetKeyDown("q"))
         {
-            animator.SetBool("Isjumping", false);
-            //ジャンプ回数のリセット
-            if (jumpn < 1)
-            {
-                jumpn = 1;
-            }
-
-            //ジャンプボタンを押された時の処理
-            if (Input.GetButtonDown("Jump"))
-            {
-                //もしジャンプ回数が1以上あるならばジャンプ
-                if (jumpn >= 1)
-                { 
-                    jumpn = jumpn - 1;
-                    Jump();
-                }
-            }
-        
-
+            Debug.Log("Dash");
+            StartCoroutine(Dash());
         }
-        */
 
     }
    
@@ -165,15 +175,20 @@ public class playermanager : MonoBehaviour
 
         }
 
-        //走る際に速度が倍になる。走るキーはshiftとする
-        if (Input.GetKey("left shift"))
+        //ダッシュが0でなければ
+        if (dflug == 0)
         {
-            speed = speed * 2;
-            rigidbody2d.velocity = new Vector2(speed, rigidbody2d.velocity.y);
-        }
-        else
-        {
-            rigidbody2d.velocity = new Vector2(speed, rigidbody2d.velocity.y);
+            //走る際に速度が倍になる。走るキーはshiftとする
+            if (Input.GetKey("left shift"))
+            {
+                speed = speed * 2;
+                rigidbody2d.velocity = new Vector2(speed, rigidbody2d.velocity.y);
+            }
+            else
+            {
+                rigidbody2d.velocity = new Vector2(speed, rigidbody2d.velocity.y);
+            }
+
         }
 
 
