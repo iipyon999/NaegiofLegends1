@@ -82,8 +82,8 @@ public class EnemyManager : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Instantiate(deathEffect, this.transform.position, this.transform.rotation);
         Destroy(this.gameObject);
+        Instantiate(deathEffect, this.transform.position, this.transform.rotation);
     }
 
 }

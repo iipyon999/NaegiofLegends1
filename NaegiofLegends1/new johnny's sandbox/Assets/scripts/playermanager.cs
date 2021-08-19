@@ -265,12 +265,12 @@ public class playermanager : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             EnemyManager enemy = collision.gameObject.GetComponent<EnemyManager>();
-            if (this.transform.position.y + 0.2f > enemy.transform.position.y)
+            if (this.transform.position.y + 0.3f > enemy.transform.position.y)
             {
                 //上から踏んだら、敵を削除
+                enemy.DestroyEnemy();
                 rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, 0);
                 Jump();
-                enemy.DestroyEnemy();
             }
             else
             {
