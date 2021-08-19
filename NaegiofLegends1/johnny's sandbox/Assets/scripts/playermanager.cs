@@ -3,7 +3,9 @@
 public class playermanager : MonoBehaviour
 {
     [SerializeField] LayerMask blockLayer;
+    [SerializeField] GameManager gameManager;
 
+    //　方向の列挙
     public enum DIRECTION_TYPE 
     {
         STOP,
@@ -11,25 +13,45 @@ public class playermanager : MonoBehaviour
         LEFT,
     }
 
+
+    //初期方向
     DIRECTION_TYPE direction = DIRECTION_TYPE.STOP;
 
-    CharacterController charactercontroller;
+    //rigidbody2dを読み込むための関数を作成
+    Rigidbody2D rigidbody2d;
+    //speedを表す関数を作成
     float speed;
+    //アニメーターコンポーネント
+    Animator animator;
+    //ジャンプ可能回数
+    float jumpn;
     
-    /*
     float jumppower = 400;
-    */
+    //生死判定
+    bool isDead = false;
 
-    float gravity = -1;
+    //ダブルジャンプ可能かどうか
+    int canjump = 0;
+    
 
+    //rigidbody2dを取得する
     private void Start()
     {
-        charactercontroller = GetComponent<CharacterController>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        jumpn = 0;
     }
 
     private void Update()
     {
-        float x = Input.GetAxis("Horizontal");
+        if (isDead)
+        {
+            return;
+        }
+
+        //左右入力に応じて-1,0,1のどれかを取る関数xを作る
+        float x = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("speed",Mathf.Abs(x));
 
         if (x == 0) 
         {
@@ -47,18 +69,86 @@ public class playermanager : MonoBehaviour
             direction = DIRECTION_TYPE.LEFT;
         }
 
-        /*
-        // スペースが押されたらJUMPさせる
-        if (IsGround() && Input.GetKeyDown("space")) 
+
+        //ダブルジャンプ不可能である場合
+        if (canjump == 0)
         {
-            Jump();
+            if (IsGround())
+            {
+                if (Input.GetButtonDown("Jump"))
+                {
+                    Jump();
+                }
+                else
+                {
+                    animator.SetBool("Isjumping", false);
+                }
+            }
+
+        }
+        else
+        {
+
+            //ジャンプ回数のリセットと追加
+            if (IsGround() && jumpn < 1)
+            {
+                jumpn = 1;
+            }
+
+            // スペースが押されたらJUMPさせる
+            if (jumpn >= 1 && Input.GetButtonDown("Jump"))
+            {
+                jumpn = jumpn - 1;
+                Jump();
+            }
+
+            //接地時アニメーションをキャンセルする
+            if (IsGround())
+            {
+                animator.SetBool("Isjumping", false);
+            }
+
+        }
+
+
+        /*
+        //接地時の処理を纏めて行う
+        if (IsGround())
+        {
+            animator.SetBool("Isjumping", false);
+            //ジャンプ回数のリセット
+            if (jumpn < 1)
+            {
+                jumpn = 1;
+            }
+
+            //ジャンプボタンを押された時の処理
+            if (Input.GetButtonDown("Jump"))
+            {
+                //もしジャンプ回数が1以上あるならばジャンプ
+                if (jumpn >= 1)
+                { 
+                    jumpn = jumpn - 1;
+                    Jump();
+                }
+            }
+        
+
         }
         */
 
     }
+   
 
     private void FixedUpdate()
     {
+
+        if (isDead)
+        {
+            return;
+        }
+
+        //入力された方向に従って速度を加減する
         switch (direction)
         {
             case DIRECTION_TYPE.STOP:
@@ -75,22 +165,109 @@ public class playermanager : MonoBehaviour
 
         }
 
-        Vector3 move = new Vector3(speed, gravity, 0);
-        charactercontroller.Move(move);
+        //走る際に速度が倍になる。走るキーはshiftとする
+        if (Input.GetKey("left shift"))
+        {
+            speed = speed * 2;
+            rigidbody2d.velocity = new Vector2(speed, rigidbody2d.velocity.y);
+        }
+        else
+        {
+            rigidbody2d.velocity = new Vector2(speed, rigidbody2d.velocity.y);
+        }
+
+
 
     }
 
-    /*void Jump()
+    void Jump()
     {
+        //一旦上下の速度を0にする
+        rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x,0);
         //上に力を加える
-        Debug.Log("Jump");
+        rigidbody2d.AddForce(Vector2.up * jumppower);
+        animator.SetBool("Isjumping",true);
     }
-    */
-
+    
+    //地面と接触しているかどうかを判定する関数
     bool IsGround()
     {
         // 始点と終点を作成
         Vector3 leftStartPoint = transform.position - Vector3.right * 0.2f;
-        return true;
+        Vector3 RightStartPoint = transform.position + Vector3.right * 0.2f;
+        Vector3 endPoint = transform.position - Vector3.up * 0.1f;
+        return Physics2D.Linecast(leftStartPoint, endPoint, blockLayer)
+            || Physics2D.Linecast(RightStartPoint, endPoint, blockLayer);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (isDead)
+        {
+            return;
+        }
+
+        if (collision.gameObject.tag == "trap") 
+        {
+            Debug.Log("game over");
+            PlayerDeath();
+
+        }
+
+        if(collision.gameObject.tag == "Finish")
+        {
+            Debug.Log("clear");
+            gameManager.GameClear();
+        }
+
+
+        if (collision.gameObject.tag == "Item")
+        {
+            //アイテム取得
+            //ぶつかったアイテムのアイテムマネージャーからゲットアイテムを起動させる
+            collision.gameObject.GetComponent<itemManager>().GetItem();
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyManager enemy = collision.gameObject.GetComponent<EnemyManager>();
+            if (this.transform.position.y + 0.2f > enemy.transform.position.y)
+            {
+                //上から踏んだら、敵を削除
+                rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, 0);
+                Jump();
+                enemy.DestroyEnemy();
+            }
+            else
+            {
+                //横からぶつかったら
+                Destroy(this.gameObject);
+                PlayerDeath();
+
+            }
+
+        }
+        if(collision.gameObject.tag == "Gem")
+        {
+            collision.gameObject.GetComponent<itemManager>().GetGem();
+            canjump = 1;
+        }
+
+
+    }
+
+    void PlayerDeath()
+    {
+        isDead = true;
+        rigidbody2d.velocity = new Vector2(0, 0);
+        rigidbody2d.AddForce(Vector2.up * jumppower);
+        animator.Play("Player-death");
+        BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+        Destroy(boxCollider2D);
+        gameManager.GameOver();
+
+    }
+
+
 }
