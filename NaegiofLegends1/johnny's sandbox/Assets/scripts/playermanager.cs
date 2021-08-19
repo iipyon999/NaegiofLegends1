@@ -13,14 +13,18 @@ public class playermanager : MonoBehaviour
 
     DIRECTION_TYPE direction = DIRECTION_TYPE.STOP;
 
-    Rigidbody2D rigitbody2d;
+    CharacterController charactercontroller;
     float speed;
-
+    
+    /*
     float jumppower = 400;
+    */
+
+    float gravity = -1;
 
     private void Start()
     {
-        rigitbody2d = GetComponent<Rigidbody2D>();
+        charactercontroller = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -43,12 +47,13 @@ public class playermanager : MonoBehaviour
             direction = DIRECTION_TYPE.LEFT;
         }
 
+        /*
         // スペースが押されたらJUMPさせる
-        if (Input.GetKeyDown("space")) 
+        if (IsGround() && Input.GetKeyDown("space")) 
         {
             Jump();
         }
-
+        */
 
     }
 
@@ -70,15 +75,22 @@ public class playermanager : MonoBehaviour
 
         }
 
-        rigitbody2d.velocity = new Vector2(speed, rigitbody2d.velocity.y);
+        Vector3 move = new Vector3(speed, gravity, 0);
+        charactercontroller.Move(move);
 
     }
 
-    void Jump()
+    /*void Jump()
     {
         //上に力を加える
-        rigitbody2d.AddForce(Vector2.up * jumppower);
         Debug.Log("Jump");
     }
+    */
 
+    bool IsGround()
+    {
+        // 始点と終点を作成
+        Vector3 leftStartPoint = transform.position - Vector3.right * 0.2f;
+        return true;
+    }
 }
