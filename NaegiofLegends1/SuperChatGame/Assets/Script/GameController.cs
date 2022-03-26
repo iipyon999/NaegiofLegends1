@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     Scenario currentScenario;
     int index = 0;
 
-    class Scenario
+    public class Scenario
     {
         public string ScenarioID;
         public List<string> Texts;
