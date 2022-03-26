@@ -1994,6 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1341325f7ef92f64ab1a19b59096a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  koubunLibrary: []
   koubunName:
   - "\u307A\u3053\u30FC\u3089"
   - "\u5FC3\u306E\u4E2D\u306E\u30D0\u30B1\u30E2\u30F3"
@@ -2015,6 +2016,16 @@ MonoBehaviour:
   - "\u30EF\u30F3\u3061\u3083\u3093\u306F\u3044\u308B\u306E\u30AB\u30CA\uFF01\uFF1F"
   - "\u30C1\u30AD\u30F3\u51B7\u3081\u3061\u3083\u3063\u305F\u2026\u2026"
   - "\u7121\u9650\u306B\u7DF4\u308A\u3092\u3057\u307E\u3064\uFF57\uFF57\uFF57"
+  koubunArrays:
+  - name: 
+    genre: 
+    naiyou: 
+  - name: 
+    genre: 
+    naiyou: 
+  - name: 
+    genre: 
+    naiyou: 
 --- !u!4 &1904852535
 Transform:
   m_ObjectHideFlags: 0
@@ -2043,6 +2054,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   koubunManager: {fileID: 0}
+  koubunTest:
+  - "\u307A\u3053\u3089"
+  - "\u307C\u3069\u304B"
+  - "\u307E\u3075\u3066\u3043\u30FC"
 --- !u!1001 &5662416911864635017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2164,6 +2179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662416911805159004, guid: 62d3d5bbd34c20340a3cf00f7414c26c,
+        type: 3}
+      propertyPath: m_text
+      value: Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62d3d5bbd34c20340a3cf00f7414c26c, type: 3}
