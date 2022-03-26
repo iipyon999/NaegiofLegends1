@@ -27,12 +27,12 @@ public class GameController : MonoBehaviour
             ScenarioID = "scenario01",
             Texts = new List<string>()
             {
-                "テスト文章１",
+                "配信者が集まる、Twitchとやらを見てみよう",
                 "テスト文章２",
                 "テスト文章３",
                 "テスト文章４",
                 "テスト文章５",
-                "ぺコーラいつもありがとうを手に入れた"
+                "どの配信者を見てみようか？"
             }
         };
 
