@@ -25,6 +25,6 @@ public class TextChange : MonoBehaviour
 
     public void TaigainiSayyo()
     {
-        textFrame.text = textFrame.text + "心の中にバケモン居るって……大概にするのは、俺の方やった";
+        textFrame.text = textFrame.text + "心の中にバケモン居るって……";
     }
 }
