@@ -59,6 +59,7 @@
     <Compile Include="Assets\Script\BottunTextChange.cs" />
     <Compile Include="Assets\Script\ButtonMake.cs" />
     <Compile Include="Assets\Script\GameController.cs" />
+    <Compile Include="Assets\Script\KoubunManager.cs" />
     <Compile Include="Assets\Script\MenuManager.cs" />
     <Compile Include="Assets\Script\Menuselect.cs" />
     <Compile Include="Assets\Script\TextChange.cs" />

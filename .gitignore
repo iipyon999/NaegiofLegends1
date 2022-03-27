@@ -1,8 +1,16 @@
 NaegiofLegends1/SuperChatGame/Library/
 NaegiofLegends1/SuperChatGame/Temp/
 NaegiofLegends1/SuperChatGame/.vs/
+<<<<<<< HEAD
 NaegiofLegends1/SuperChatGame/Assets/Fonts.meta
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset.meta
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium.otf
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium.otf.meta
+=======
+NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset
+NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset.meta
+NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium.otf.meta
+NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium.otf
+NaegiofLegends1/SuperChatGame/Assets/Fonts.meta
+>>>>>>> 11cb21c1cdbc7aaadf5f747ef5726a41f1572463
