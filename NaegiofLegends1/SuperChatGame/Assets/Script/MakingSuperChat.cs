@@ -11,6 +11,9 @@ public class MakingSuperChat : MonoBehaviour
     GameObject text;
     Text superChatText;
 
+    public int superChatNum = 0;
+    [SerializeField]
+    public int superChatLimit;
 
     private void Start()
     {
@@ -24,7 +27,17 @@ public class MakingSuperChat : MonoBehaviour
     {
         string tagnum = this.tag;
         int num = int.Parse(tagnum);
-        superChatText.text = superChatText.text + koubunManager.koubunArrays[num].naiyou;
+        superChatNum++;
+        if (superChatNum < superChatLimit)
+        {
+            superChatText.text = superChatText.text + koubunManager.koubunArrays[num].naiyou;
+        }
+    }
+
+    public void ResetSuperChat()
+    {
+        superChatNum = 0;
+        superChatText.text = "";
     }
 
 }
