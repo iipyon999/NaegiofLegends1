@@ -64,8 +64,6 @@ public class KoubunManager : MonoBehaviour
 
     }
 
-
-
     public void KoubunRandomize()
     {
         KoubunGetRandom(0, 5, 3);
