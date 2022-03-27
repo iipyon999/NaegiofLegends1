@@ -6,45 +6,27 @@ using UnityEngine.UI;
 
 public class KoubunManager : MonoBehaviour
 {
+    KoubunLibrary koubunLibrary; //構文集を持つスクリプトです
 
-    [SerializeField]
-    public List<Koubun> koubunLibrary = new List<Koubun>(); //構文用ソース
-
-    [SerializeField]
-    string[] koubunName = new string[6]; //構文名前入力欄
-    [SerializeField]
-    string[] koubunGenre = new string[6]; //構文genre入力欄
-    [SerializeField]
-    string[] koubunNaiyou = new string[6]; //構文内容入力欄
-    [SerializeField]
-    int[] koubunPoint = new int[6];//テスト用の構文ポイント
     [SerializeField]
     public Koubun[] koubunArrays = new Koubun[3]; //実際に選択された構文
 
     MakingSuperChat makingSuperChat;
     private ButtonMake buttonMake;
     GameObject originalButton;
-    public int superChatNum = 0;
+    public int superChatNum = 0; //スパチャ構文を見る変数
     [SerializeField]
-    public int superChatLimit = 3;
+    public int superChatLimit ; //スパチャ構文の限界数を見る変数
 
     public int superChatPoint;
 
     private void Start()
     {
+        koubunLibrary = GetComponent<KoubunLibrary>();
         makingSuperChat = GetComponent<MakingSuperChat>();
         originalButton = (GameObject)Resources.Load("Button");
         buttonMake = GetComponent<ButtonMake>();
-        for (int i = 0; i < 6; i++) //Libraryに構文を格納
-        {
-            koubunLibrary.Add(new Koubun() {
-                name = koubunName[i],
-                genre = koubunGenre[i],
-                naiyou = koubunNaiyou[i],
-                point = koubunPoint[i]
-            }) ;
-        }
-        KoubunGetRandom(0, 5, 3);
+        KoubunGetRandom(0, koubunLibrary.koubunList.Count-1, 3);
     }
 
     private void KoubunGetRandom(int start, int end, int count)
@@ -61,7 +43,7 @@ public class KoubunManager : MonoBehaviour
         {
             int index = Random.Range(0, numbers.Count);
             int ransu = numbers[index];
-            koubunArrays[i] = koubunLibrary[ransu];
+            koubunArrays[i] = koubunLibrary.koubunList[ransu];
             numbers.RemoveAt(index);
         }
 
@@ -69,7 +51,7 @@ public class KoubunManager : MonoBehaviour
 
     public void KoubunRandomize()
     {
-        KoubunGetRandom(0, 5, 3);
+        KoubunGetRandom(0, koubunLibrary.koubunList.Count-1, 3);
         buttonMake.DestroyButton();
         buttonMake.ButtonMaking(originalButton);
         makingSuperChat.ResetSuperChat();
