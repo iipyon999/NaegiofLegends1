@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
+    public GameObject panel;
     [SerializeField]
     Text scenarioMessage;
     List<Scenario> scenarios = new List<Scenario>();
@@ -27,11 +27,11 @@ public class GameController : MonoBehaviour
             ScenarioID = "scenario01",
             Texts = new List<string>()
             {
-                "配信者が集まる、Twitchとやらを見てみよう",
-                "テスト文章２",
-                "テスト文章３",
-                "テスト文章４",
-                "テスト文章５",
+                "配信者が集まるプラットフォーム、Twitchとやらを見てみよう",
+                "今配信しているのは……",
+                "Stylishnoodleと……",
+                "VDKと……",
+                "ふらんしすこ、この三人か……",
                 "どの配信者を見てみようか？"
             }
         };
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            ExitScenario();
+            Twitchbotan();
         }
     }
 
@@ -84,5 +84,8 @@ public class GameController : MonoBehaviour
             currentScenario = nextScenario;
         }
     }
-
+    void Twitchbotan()
+    {
+        panel.SetActive(true);
+    }
 }
