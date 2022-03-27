@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class GameController : MonoBehaviour
 {
     public GameObject panel;
@@ -10,15 +10,7 @@ public class GameController : MonoBehaviour
     List<Scenario> scenarios = new List<Scenario>();
 
     Scenario currentScenario;
-    int index = 0;
-
-    public class Scenario
-    {
-        public string ScenarioID;
-        public List<string> Texts;
-        public List<string> Options;
-        public string NextScenarioID;
-    }
+    public int index = 0;
 
     void Start()
     {
@@ -50,13 +42,13 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void SetScenario(Scenario scenario)
+    public void SetScenario(Scenario scenario)
     {
         currentScenario = scenario;
         scenarioMessage.text = currentScenario.Texts[0];
     }
 
-    void SetNextMessage()
+    public void SetNextMessage()
     {
         if (currentScenario.Texts.Count > index + 1)
         {
@@ -65,11 +57,11 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            Twitchbotan();
+            Twitchbotan(); 
         }
     }
 
-    void ExitScenario()
+    public void ExitScenario()
     {
         scenarioMessage.text = "";
         index = 0;
@@ -84,8 +76,9 @@ public class GameController : MonoBehaviour
             currentScenario = nextScenario;
         }
     }
-    void Twitchbotan()
+    public void Twitchbotan()
     {
         panel.SetActive(true);
     }
 }
+

@@ -224,6 +224,26 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!1 &112141603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1831445179959115067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &112141604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112141603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca788430808f4fbd5700c4568c816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 1
+  gc: {fileID: 641252437}
 --- !u!1 &301750599
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 94175571}
   scenarioMessage: {fileID: 1071487050}
+  index: 0
 --- !u!4 &641252438
 Transform:
   m_ObjectHideFlags: 0
@@ -879,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}
       propertyPath: m_Name
-      value: 'Button(VDK) '
+      value: VDKButton
       objectReference: {fileID: 0}
     - target: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}
@@ -1100,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}
       propertyPath: m_Name
-      value: 'Button(FSC) '
+      value: FSCButton
       objectReference: {fileID: 0}
     - target: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}
@@ -1121,6 +1142,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 94175572}
     m_Modifications:
+    - target: {fileID: 1831445179924424928, guid: a9f115b3fd4456f41b910e191265110c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831445179924424928, guid: a9f115b3fd4456f41b910e191265110c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831445179924424928, guid: a9f115b3fd4456f41b910e191265110c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 112141604}
+    - target: {fileID: 1831445179924424928, guid: a9f115b3fd4456f41b910e191265110c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831445179924424928, guid: a9f115b3fd4456f41b910e191265110c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831445179924424928, guid: a9f115b3fd4456f41b910e191265110c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1831445179924424930, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1229,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}
       propertyPath: m_Name
-      value: Button(STN)
+      value: STNButton
       objectReference: {fileID: 0}
     - target: {fileID: 1831445179924424931, guid: a9f115b3fd4456f41b910e191265110c,
         type: 3}

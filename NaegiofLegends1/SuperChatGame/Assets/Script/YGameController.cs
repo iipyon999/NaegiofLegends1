@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class YGameController : MonoBehaviour
         public List<string> Options;
         public string NextScenarioID;
     }
-
+    
     void Start()
     {
         var scenario01 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
