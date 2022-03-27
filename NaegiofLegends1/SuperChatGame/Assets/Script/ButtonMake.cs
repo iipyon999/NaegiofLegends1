@@ -26,13 +26,13 @@ public class ButtonMake : MonoBehaviour
             buttons.transform.SetParent(this.parent.transform, false);
             TextMeshProUGUI text = buttons.transform.Find("Text (TMP)").gameObject.GetComponent<TextMeshProUGUI>();
             text.text = koubunManager.koubunArrays[i].name;
-            buttonNaiyou.onClick.AddListener(KoubunMaking(i));
+            buttonNaiyou.onClick.AddListener(KoubunMaking);
         }
     }
 
-    private void KoubunMaking(int i)
+    private void KoubunMaking()
     {
-        superChatText.text = koubunManager.koubunArrays[i].naiyou;
+        superChatText.text = koubunManager.koubunArrays[0].naiyou;
     }
 
 
