@@ -13,7 +13,7 @@ public class MakingSuperChat : MonoBehaviour
 
     public int superChatNum = 0;
     [SerializeField]
-    public int superChatLimit;
+    public int superChatLimit = 3;
 
     private void Start()
     {
