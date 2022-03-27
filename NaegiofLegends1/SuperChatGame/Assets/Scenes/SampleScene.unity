@@ -927,8 +927,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d361710d318e3434497e63b180d45d73, type: 2}
+  m_sharedMaterial: {fileID: -5294651285844194151, guid: d361710d318e3434497e63b180d45d73,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1141,10 +1142,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\u914D\u4FE1\u3092\u898B\u306B\u884C\u304F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d361710d318e3434497e63b180d45d73, type: 2}
+  m_sharedMaterial: {fileID: -5294651285844194151, guid: d361710d318e3434497e63b180d45d73,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1168,8 +1170,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1649,10 +1651,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\u304A\u8A66\u3057\u30E9\u30F3\u30C0\u30DE\u30A4\u30B6"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d361710d318e3434497e63b180d45d73, type: 2}
+  m_sharedMaterial: {fileID: -5294651285844194151, guid: d361710d318e3434497e63b180d45d73,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1676,8 +1679,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1926,7 +1929,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1855780074}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1904852534}
+        m_MethodName: KoubunRandomize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1855780074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,10 +2068,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   koubunManager: {fileID: 0}
+  superChatText: {fileID: 0}
   koubunTest:
   - "\u307A\u3053\u3089"
   - "\u307C\u3069\u304B"
   - "\u307E\u3075\u3066\u3043\u30FC"
+  naiyou: 
 --- !u!1001 &5662416911864635017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2070,11 +2086,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
-    - target: {fileID: 5662416911597087642, guid: 62d3d5bbd34c20340a3cf00f7414c26c,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 623893793}
     - target: {fileID: 5662416911597087643, guid: 62d3d5bbd34c20340a3cf00f7414c26c,
         type: 3}
       propertyPath: m_Pivot.x

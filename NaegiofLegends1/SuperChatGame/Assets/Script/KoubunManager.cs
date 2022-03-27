@@ -30,13 +30,16 @@ public class KoubunManager : MonoBehaviour
     [SerializeField]
     public Koubun[] koubunArrays = new Koubun[3]; //実際に選択された構文
 
+    private ButtonMake buttonMake;
+    GameObject originalButton;
+
     private void Start()
     {
+        originalButton = (GameObject)Resources.Load("Button");
+        buttonMake = GetComponent<ButtonMake>();
         for (int i = 0; i < 6; i++) //Libraryに構文を格納
         {
-            Debug.Log(koubunName[i]);
-            koubunLibrary.Add(new Koubun() {name = koubunName[i],genre = koubunGenre[i],naiyou = koubunNaiyou[i]});
-            Debug.Log(koubunLibrary[i].name);
+            koubunLibrary.Add(new Koubun() { name = koubunName[i], genre = koubunGenre[i], naiyou = koubunNaiyou[i] });
         }
         KoubunGetRandom(0, 5, 3);
     }
@@ -56,7 +59,6 @@ public class KoubunManager : MonoBehaviour
             int index = Random.Range(0, numbers.Count);
             int ransu = numbers[index];
             koubunArrays[i] = koubunLibrary[ransu];
-            Debug.Log(koubunArrays[i].name);
             numbers.RemoveAt(index);
         }
 
@@ -64,9 +66,11 @@ public class KoubunManager : MonoBehaviour
 
 
 
-    private void KoubunRandomize()
+    public void KoubunRandomize()
     {
         KoubunGetRandom(0, 5, 3);
+        buttonMake.DestroyButton();
+        buttonMake.ButtonMaking(originalButton);
     }
 
 }
