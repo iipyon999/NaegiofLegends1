@@ -58,7 +58,7 @@ public class ButtonMake : MonoBehaviour
             GameObject buttons = (GameObject)Instantiate(button, new Vector3(385, 120 - (i * 35), 0), Quaternion.identity);
             Button buttonNaiyou = buttons.gameObject.GetComponent<Button>();
             buttons.transform.SetParent(this.parent.transform, false);
-            TextMeshProUGUI text = buttons.transform.Find("Text (TMP)").gameObject.GetComponent<TextMeshProUGUI>();
+            Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
             AddTag(i.ToString());
             buttons.tag = i.ToString();
             text.text = koubunManager.koubunArrays[i].name; //作ったボタンの名前を変えている
