@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TwitchScene.unity
     guid: 7cf75e6b7dee4b146b34479192cf870b
+  - enabled: 1
+    path: Assets/Scenes/YoutubeScene.unity
+    guid: aa0ac32596600574ea76428900508ab0
   m_configObjects: {}
