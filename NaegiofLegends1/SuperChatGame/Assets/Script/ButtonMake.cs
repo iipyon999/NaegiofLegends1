@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class ButtonMake : MonoBehaviour
 {
@@ -13,28 +14,63 @@ public class ButtonMake : MonoBehaviour
     [SerializeField]
     string[] koubunTest = new string[3];
 
+    public string naiyou;
+
+    List<GameObject> buttonsLists = new List<GameObject>();
+
     void Start()
     {
         parent = GameObject.Find("Text");
         superChatText = parent.gameObject.GetComponent<Text>();
         koubunManager = gameObject.GetComponent<KoubunManager>();
         GameObject button = (GameObject)Resources.Load("Button");
-        Button buttonNaiyou = button.gameObject.GetComponent<Button>();
-        for (int i = 0; i < 3; i++)
+        ButtonMaking(button);
+    }
+
+    void AddTag(string tagname)
+    {
+        UnityEngine.Object[] asset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
+        if ((asset != null) && (asset.Length > 0))
         {
-            GameObject buttons = (GameObject)Instantiate(button, new Vector3(385, 120 - (i * 35), 0), Quaternion.identity);
-            buttons.transform.SetParent(this.parent.transform, false);
-            TextMeshProUGUI text = buttons.transform.Find("Text (TMP)").gameObject.GetComponent<TextMeshProUGUI>();
-            text.text = koubunManager.koubunArrays[i].name;
-            buttonNaiyou.onClick.AddListener(KoubunMaking);
+            SerializedObject so = new SerializedObject(asset[0]);
+            SerializedProperty tags = so.FindProperty("tags");
+
+            for (int i = 0; i < tags.arraySize; ++i)
+            {
+                if (tags.GetArrayElementAtIndex(i).stringValue == tagname)
+                {
+                    return;
+                }
+            }
+
+            int index = tags.arraySize;
+            tags.InsertArrayElementAtIndex(index);
+            tags.GetArrayElementAtIndex(index).stringValue = tagname;
+            so.ApplyModifiedProperties();
+            so.Update();
         }
     }
 
-    private void KoubunMaking()
+    public void ButtonMaking(GameObject button)
     {
-        superChatText.text = koubunManager.koubunArrays[0].naiyou;
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject buttons = (GameObject)Instantiate(button, new Vector3(385, 120 - (i * 35), 0), Quaternion.identity);
+            Button buttonNaiyou = buttons.gameObject.GetComponent<Button>();
+            buttons.transform.SetParent(this.parent.transform, false);
+            TextMeshProUGUI text = buttons.transform.Find("Text (TMP)").gameObject.GetComponent<TextMeshProUGUI>();
+            AddTag(i.ToString());
+            buttons.tag = i.ToString();
+            text.text = koubunManager.koubunArrays[i].name; //作ったボタンの名前を変えている
+            buttonsLists.Add(buttons);
+        }
     }
 
-
-
+    public void DestroyButton()
+    {
+        for(int i = 0; i < buttonsLists.Count; i++)
+        {
+            Destroy(buttonsLists[i]);
+        }
+    }
 }
