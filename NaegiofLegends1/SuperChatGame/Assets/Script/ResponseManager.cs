@@ -16,47 +16,47 @@ public class ResponseManager : MonoBehaviour
     public Text responseText;
 
     [SerializeField]
-    public List<Responses> responses = new List<Responses>();
+    public List<Responses> responseList = new List<Responses>();
     [SerializeField]
-    public List<string> response = new List<string>();
+    public List<string> responseTextList = new List<string>();
     [SerializeField]
-    public List<int> point = new List<int>();
+    public List<int> needPoint = new List<int>();
 
 
     private void Start()
     {
         responseText = GameObject.Find("CommentText").GetComponent<Text>();
-        response.Add("あ、スパチャありがとう！");
-        response.Add("スパチャありがとう！");
-        response.Add("え、なにこれｗｗｗ");
-        response.Add("うわすっごいスパチャ、ありがとう！");
-        response.Add("えぇ……（ドン引き）");
-        response.Add("キモスパチャ……");
-        point.Add(0);
-        point.Add(6);
-        point.Add(12);
-        point.Add(18);
-        point.Add(24);
-        point.Add(30);
-        point.Add(36);
+        responseTextList.Add("あ、スパチャありがとう！");
+        responseTextList.Add("スパチャありがとう！");
+        responseTextList.Add("え、なにこれｗｗｗ");
+        responseTextList.Add("うわすっごいスパチャ、ありがとう！");
+        responseTextList.Add("えぇ……（ドン引き）");
+        responseTextList.Add("キモスパチャ……");
+        needPoint.Add(0);
+        needPoint.Add(6);
+        needPoint.Add(12);
+        needPoint.Add(18);
+        needPoint.Add(24);
+        needPoint.Add(30);
+        needPoint.Add(36);
         for (int i = 0; i < 6; i++)
         {
-            responses.Add(new Responses()
+            responseList.Add(new Responses()
             {
-                response = response[i],
-                downerPoint = point[i],
-                apperPoint = point[i+1]
+                response = responseTextList[i],
+                downerPoint = needPoint[i],
+                apperPoint = needPoint[i+1]
             }) ;
         }
     }
 
     public void Response(int point)
     {
-        for(int i = 0; i < responses.Count; i++)
+        for(int i = 0; i < responseList.Count; i++)
         {
-            if(responses[i].downerPoint <= point && responses[i].apperPoint >= point)
+            if(responseList[i].downerPoint <= point && responseList[i].apperPoint >= point)
             {
-                responseText.text = responses[i].response;
+                responseText.text = responseList[i].response;
             }
         }
     }

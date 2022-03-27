@@ -3,19 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Koubun
-{
-    public string name; //構文の名前
-    public string genre; //構文のジャンル。手にいれられる場所などに依存？
-    public string naiyou; //構文の中身
-    public int point;
-    /*
-    public int ojisanPoint; //オジサンポイント
-    public int kimoPoint; //気持ち悪さを見るキモポイント
-    public int yabaiPoint;　//ヤバさをみるヤバポイント
-    */
-}
 
 public class KoubunManager : MonoBehaviour
 {
