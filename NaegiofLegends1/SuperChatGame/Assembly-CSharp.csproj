@@ -63,6 +63,7 @@
     <Compile Include="Assets\Script\MenuManager.cs" />
     <Compile Include="Assets\Script\Menuselect.cs" />
     <Compile Include="Assets\Script\TextChange.cs" />
+    <Compile Include="Assets\Script\YGameController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
