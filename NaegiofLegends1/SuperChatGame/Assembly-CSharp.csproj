@@ -63,7 +63,11 @@
     <Compile Include="Assets\Script\MakingSuperChat.cs" />
     <Compile Include="Assets\Script\MenuManager.cs" />
     <Compile Include="Assets\Script\Menuselect.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Script\PanelActivate.cs" />
+=======
+    <Compile Include="Assets\Script\NGameController.cs" />
+>>>>>>> ef243a2940e2f4448b99a682f5031942155443b6
     <Compile Include="Assets\Script\TextChange.cs" />
     <Compile Include="Assets\Script\YGameController.cs" />
   </ItemGroup>
