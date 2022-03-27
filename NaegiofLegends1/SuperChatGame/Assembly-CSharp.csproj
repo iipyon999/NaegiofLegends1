@@ -53,7 +53,7 @@
     <UnityVersion>2019.4.29f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\BottunTextChange.cs" />
@@ -65,7 +65,6 @@
     <Compile Include="Assets\Script\Menuselect.cs" />
     <Compile Include="Assets\Script\NGameController.cs" />
     <Compile Include="Assets\Script\PanelActivate.cs" />
-    <Compile Include="Assets\Script\TextChange.cs" />
     <Compile Include="Assets\Script\YGameController.cs" />
   </ItemGroup>
   <ItemGroup>

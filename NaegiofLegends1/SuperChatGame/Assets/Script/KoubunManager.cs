@@ -30,11 +30,16 @@ public class KoubunManager : MonoBehaviour
     [SerializeField]
     public Koubun[] koubunArrays = new Koubun[3]; //実際に選択された構文
 
+    MakingSuperChat makingSuperChat;
     private ButtonMake buttonMake;
     GameObject originalButton;
+    public int superChatNum = 0;
+    [SerializeField]
+    public int superChatLimit = 3;
 
     private void Start()
     {
+        makingSuperChat = GetComponent<MakingSuperChat>();
         originalButton = (GameObject)Resources.Load("Button");
         buttonMake = GetComponent<ButtonMake>();
         for (int i = 0; i < 6; i++) //Libraryに構文を格納
@@ -69,6 +74,8 @@ public class KoubunManager : MonoBehaviour
         KoubunGetRandom(0, 5, 3);
         buttonMake.DestroyButton();
         buttonMake.ButtonMaking(originalButton);
+        makingSuperChat.ResetSuperChat();
+
     }
 
 }

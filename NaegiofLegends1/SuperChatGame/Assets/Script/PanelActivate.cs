@@ -10,4 +10,16 @@ public class PanelActivate : MonoBehaviour
     {
         panel.SetActive(true);
     }
+
+    public void PanelSetting()
+    {
+        if (panel.activeSelf == false)
+        {
+            panel.SetActive(true);
+        }
+        else
+        {
+            panel.SetActive(false);
+        }
+    }
 }

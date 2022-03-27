@@ -11,24 +11,21 @@ public class MakingSuperChat : MonoBehaviour
     GameObject text;
     Text superChatText;
 
-    public int superChatNum = 0;
-    [SerializeField]
-    public int superChatLimit = 3;
-
     private void Start()
     {
         koubunM = GameObject.Find("KoubunManager");
         koubunManager = koubunM.GetComponent<KoubunManager>();
         text = transform.parent.gameObject;
         superChatText = text.gameObject.GetComponent<Text>();
+        superChatText.text = "";
     }
 
     public void SuperChat()
     {
         string tagnum = this.tag;
         int num = int.Parse(tagnum);
-        superChatNum++;
-        if (superChatNum < superChatLimit)
+        koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
+        if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
             superChatText.text = superChatText.text + koubunManager.koubunArrays[num].naiyou;
         }
@@ -36,7 +33,8 @@ public class MakingSuperChat : MonoBehaviour
 
     public void ResetSuperChat()
     {
-        superChatNum = 0;
+        superChatText = GameObject.Find("Text").GetComponent<Text>();
+        koubunManager.superChatNum = 0;
         superChatText.text = "";
     }
 

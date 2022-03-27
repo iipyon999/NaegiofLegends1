@@ -11,10 +11,6 @@ public class ButtonMake : MonoBehaviour
     public KoubunManager koubunManager;
     public Text superChatText;
 
-    [SerializeField]
-    string[] koubunTest = new string[3];
-
-    public string naiyou;
 
     List<GameObject> buttonsLists = new List<GameObject>();
 
