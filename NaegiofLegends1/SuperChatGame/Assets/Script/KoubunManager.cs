@@ -9,6 +9,7 @@ public class Koubun
     public string name; //構文の名前
     public string genre; //構文のジャンル。手にいれられる場所などに依存？
     public string naiyou; //構文の中身
+    public int point;
     /*
     public int ojisanPoint; //オジサンポイント
     public int kimoPoint; //気持ち悪さを見るキモポイント
@@ -18,6 +19,7 @@ public class Koubun
 
 public class KoubunManager : MonoBehaviour
 {
+
     [SerializeField]
     public List<Koubun> koubunLibrary = new List<Koubun>(); //構文用ソース
 
@@ -28,6 +30,8 @@ public class KoubunManager : MonoBehaviour
     [SerializeField]
     string[] koubunNaiyou = new string[6]; //構文内容入力欄
     [SerializeField]
+    int[] koubunPoint = new int[6];//テスト用の構文ポイント
+    [SerializeField]
     public Koubun[] koubunArrays = new Koubun[3]; //実際に選択された構文
 
     MakingSuperChat makingSuperChat;
@@ -37,6 +41,8 @@ public class KoubunManager : MonoBehaviour
     [SerializeField]
     public int superChatLimit = 3;
 
+    public int superChatPoint;
+
     private void Start()
     {
         makingSuperChat = GetComponent<MakingSuperChat>();
@@ -44,7 +50,12 @@ public class KoubunManager : MonoBehaviour
         buttonMake = GetComponent<ButtonMake>();
         for (int i = 0; i < 6; i++) //Libraryに構文を格納
         {
-            koubunLibrary.Add(new Koubun() { name = koubunName[i], genre = koubunGenre[i], naiyou = koubunNaiyou[i] });
+            koubunLibrary.Add(new Koubun() {
+                name = koubunName[i],
+                genre = koubunGenre[i],
+                naiyou = koubunNaiyou[i],
+                point = koubunPoint[i]
+            }) ;
         }
         KoubunGetRandom(0, 5, 3);
     }

@@ -65,6 +65,8 @@
     <Compile Include="Assets\Script\Menuselect.cs" />
     <Compile Include="Assets\Script\NGameController.cs" />
     <Compile Include="Assets\Script\PanelActivate.cs" />
+    <Compile Include="Assets\Script\ResponseManager.cs" />
+    <Compile Include="Assets\Script\Scenario.cs" />
     <Compile Include="Assets\Script\YGameController.cs" />
   </ItemGroup>
   <ItemGroup>

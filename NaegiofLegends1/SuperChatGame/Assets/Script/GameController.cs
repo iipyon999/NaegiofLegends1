@@ -12,13 +12,6 @@ public class GameController : MonoBehaviour
     Scenario currentScenario;
     int index = 0;
 
-    public class Scenario
-    {
-        public string ScenarioID;
-        public List<string> Texts;
-        public List<string> Options;
-        public string NextScenarioID;
-    }
 
     void Start()
     {

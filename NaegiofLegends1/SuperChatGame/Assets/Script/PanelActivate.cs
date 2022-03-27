@@ -6,11 +6,6 @@ using UnityEngine.UI;
 public class PanelActivate : MonoBehaviour
 {
     public GameObject panel;
-    public void PanelActivating()
-    {
-        panel.SetActive(true);
-    }
-
     public void PanelSetting()
     {
         if (panel.activeSelf == false)
