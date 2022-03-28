@@ -21,7 +21,7 @@ public class KoubunManager : MonoBehaviour
     public int superChatPoint;
 
     [SerializeField]
-    int choiseNum;
+    public int choiseNum; //いくつチョイスするか
 
     private void Start()
     {
@@ -29,16 +29,20 @@ public class KoubunManager : MonoBehaviour
         makingSuperChat = GetComponent<MakingSuperChat>();
         originalButton = (GameObject)Resources.Load("Button");
         buttonMake = GetComponent<ButtonMake>();
-        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
+        StartCoroutine("KoubunListCheck");
     }
 
     public void KoubunChoiceReset()
     {
-
+        while (koubunChoiceList.Count > 0)
+        {
+            koubunChoiceList.RemoveAt(0);
+        }
     }
 
     private void KoubunGetRandom(int start, int end, int count)
     {
+        KoubunChoiceReset();
         List<int> numbers = new List<int>();
 
         for (int i = start; i <= end; i++)
@@ -58,11 +62,19 @@ public class KoubunManager : MonoBehaviour
 
     public void KoubunRandomize()
     {
-        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, 3);
+        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
         buttonMake.DestroyButton();
         buttonMake.ButtonMaking(originalButton);
         makingSuperChat.ResetSuperChat();
+    }
 
+    IEnumerator KoubunListCheck()
+    {
+        while (koubunLibrary.koubunList.Count != koubunLibrary.rowLength || koubunLibrary.rowLength == 0)
+        {
+            yield return null;
+            KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
+        }
     }
 
 }

@@ -2502,48 +2502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1341325f7ef92f64ab1a19b59096a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  koubunLibrary: []
-  koubunName:
-  - "\u307A\u3053\u30FC\u3089"
-  - "\u5FC3\u306E\u4E2D\u306E\u30D0\u30B1\u30E2\u30F3"
-  - "\u30DE\u30D5\u30C6\u30A3\u30FC"
-  - "\u30EF\u30F3\u3061\u3083\u3093"
-  - "\u30C1\u30AD\u30F3"
-  - "\u7121\u9650\u306B\u7DF4\u308A"
-  koubunGenre:
-  - test1
-  - test2
-  - test3
-  - test4
-  - test5
-  - test6
-  koubunNaiyou:
-  - "\u307A\u3053\u30FC\u3089\u3044\u3064\u3082\u3042\u308A\u304C\u3068\u3046\uFF01"
-  - "\u5FC3\u306E\u4E2D\u306B\u30D0\u30B1\u30E2\u30F3\u5C45\u308B\u3063\u3066\u2026\u2026"
-  - "\u3084\u3063\u3066\u898B\u305B\u308D\u3088\u30DE\u30D5\u30C6\u30A3\u30FC\uFF01\uFF01"
-  - "\u30EF\u30F3\u3061\u3083\u3093\u306F\u3044\u308B\u306E\u30AB\u30CA\uFF01\uFF1F"
-  - "\u30C1\u30AD\u30F3\u51B7\u3081\u3061\u3083\u3063\u305F\u2026\u2026"
-  - "\u7121\u9650\u306B\u7DF4\u308A\u3092\u3057\u307E\u3064\uFF57\uFF57\uFF57"
-  koubunPoint: 0500000007000000050000000c0000000f00000009000000
-  koubunArrays:
-  - ID: 0
-    name: 
-    genre: 
-    naiyou: 
-    point: 0
-  - ID: 0
-    name: 
-    genre: 
-    naiyou: 
-    point: 0
-  - ID: 0
-    name: 
-    genre: 
-    naiyou: 
-    point: 0
+  koubunChoiceList: []
   superChatNum: 0
   superChatLimit: 3
   superChatPoint: 0
+  choiseNum: 3
 --- !u!4 &1904852535
 Transform:
   m_ObjectHideFlags: 0
@@ -2616,7 +2579,8 @@ MonoBehaviour:
   textMessage: []
   rowLength: 0
   columnLength: 0
-  koubunLibrary: []
+  koubunBeforeData: []
+  koubunList: []
 --- !u!1 &1989354374
 GameObject:
   m_ObjectHideFlags: 0
