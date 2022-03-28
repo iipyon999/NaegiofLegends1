@@ -5,10 +5,15 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public int num;
-    public GameController gc;
+    GameController gc;
+
+    private void Start()
+    {
+        gc = GameObject.Find("GameController").GetComponent<GameController>();
+    }
+
     public void OnClick()
     {
-        gc.index = 0;
         var scenario01 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
             ScenarioID = "STNscenario",
@@ -22,7 +27,6 @@ public class ButtonScript : MonoBehaviour
                 "なんだコイツ！？を手に入れた"
             }
         };
-        gc.index = 0;
         var scenario02 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
             ScenarioID = "VDKscenario",
@@ -36,7 +40,6 @@ public class ButtonScript : MonoBehaviour
                 "心の中にバケモン居るって……を手に入れた"
             }
         };
-        gc.index = 0;
         var scenario03 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
             ScenarioID = "しすこscenario",
@@ -64,7 +67,7 @@ public class ButtonScript : MonoBehaviour
                 gc.SetScenario(scenario03);
                 break;
         }
-         gc.panel.SetActive(false);
+         gc.buttonPanel.SetActive(false);
     }
 
 }

@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject panel;
     [SerializeField]
     Text scenarioText; //シナリオを表示するための場所
     List<Scenario> scenarios = new List<Scenario>();
-    //bool panelkirikae = false;
+    bool buttonPanelChange = false; //ボタンパネルを表示させるかどうかを判断するための変数
     [SerializeField]
     public Scenario currentScenario; //public化して他のところから参照できるように
+    private GameObject canvas; //キャンバスを取得
+    public GameObject buttonPanel; // ボタン用のパネルを取得
 
     public int index = 0;
 
@@ -24,10 +25,24 @@ public class GameController : MonoBehaviour
 
     public void StartingScenarioSet()
     {
-        if (GameObject.Find("ScenarioText") == true)
+        buttonPanelChange = false; //呼ばれるたびに一旦falseにする
+
+        if (GameObject.Find("Canvas") == true) //キャンバスがあるかどうかを確認する
         {
-            scenarioText = GameObject.Find("ScenarioText").GetComponent<Text>();
+            canvas = GameObject.Find("Canvas"); //キャンバスを取得する
         }
+
+        if (canvas.transform.Find("ButtonPanel") == true) //ボタンパネルがあるかどうかを確認する
+        {
+            buttonPanel = canvas.transform.Find("ButtonPanel").gameObject;
+            //ボタンパネルはキャンバスの子供なので、親を経由すれば非アクティブで取得できる
+        }
+
+        if (GameObject.Find("ScenarioText") == true) //シナリオテキストがあるかどうかを確認する
+        {
+            scenarioText = GameObject.Find("ScenarioText").GetComponent<Text>(); //シナリオテキストを取得する
+        }
+
         var startingScenario = new Scenario(); //始まりのシナリオを格納するための場所
         string activeSceneName = SceneManager.GetActiveScene().name; //現在のシーンの名前
 
@@ -65,6 +80,7 @@ public class GameController : MonoBehaviour
                 };
 
                 break;
+
             case "NiconicoScene": //Niconicoシーンの始まりのシナリオ
                 startingScenario = new Scenario()
                 {
@@ -119,7 +135,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            //Twitchbotan();
+            buttonPanelActivator();
             ExitScenario();
         }
     }
@@ -140,15 +156,13 @@ public class GameController : MonoBehaviour
         }
     }
 
-    /*
-    public void Twitchbotan()
+    public void buttonPanelActivator()
     {
-        if (panelkirikae == false)
+        if (buttonPanelChange == false)
         {
-            panel.SetActive(true);
+            buttonPanel.SetActive(true);
         }
-        panelkirikae = true;
+        buttonPanelChange = true;
     }
-    */
 }
 

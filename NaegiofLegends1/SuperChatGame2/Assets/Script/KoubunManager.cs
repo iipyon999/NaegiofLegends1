@@ -30,8 +30,6 @@ public class KoubunManager : MonoBehaviour
         originalButton = (GameObject)Resources.Load("Button");
         buttonMake = GetComponent<ButtonMake>();
         StartCoroutine("KoubunListCheck");
-        
-
     }
 
     public void KoubunChoiceReset()
