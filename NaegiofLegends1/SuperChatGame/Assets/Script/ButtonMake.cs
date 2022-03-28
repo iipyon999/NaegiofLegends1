@@ -57,7 +57,7 @@ public class ButtonMake : MonoBehaviour
             Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
             AddTag(i.ToString());
             buttons.tag = i.ToString();
-            text.text = koubunManager.koubunArrays[i].name; //作ったボタンの名前を変えている
+            text.text = koubunManager.koubunChoiceList[i].name; //作ったボタンの名前を変えている
             buttonsLists.Add(buttons);
         }
     }

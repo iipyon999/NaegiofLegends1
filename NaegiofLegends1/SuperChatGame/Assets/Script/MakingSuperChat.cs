@@ -29,8 +29,8 @@ public class MakingSuperChat : MonoBehaviour
         koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
         if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
-            superChatText.text = superChatText.text + koubunManager.koubunArrays[num].naiyou;
-            koubunManager.superChatPoint += koubunManager.koubunArrays[num].point;
+            superChatText.text = superChatText.text + koubunManager.koubunChoiceList[num].naiyou;
+            koubunManager.superChatPoint += koubunManager.koubunChoiceList[num].point;
         }
     }
 

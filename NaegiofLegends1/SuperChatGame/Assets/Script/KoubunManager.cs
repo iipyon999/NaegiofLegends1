@@ -9,16 +9,19 @@ public class KoubunManager : MonoBehaviour
     KoubunLibrary koubunLibrary; //構文集を持つスクリプトです
 
     [SerializeField]
-    public Koubun[] koubunArrays = new Koubun[3]; //実際に選択された構文
+    public List<Koubun> koubunChoiceList = new List<Koubun>(); //実際に選択された構文
 
     MakingSuperChat makingSuperChat;
     private ButtonMake buttonMake;
     GameObject originalButton;
     public int superChatNum = 0; //スパチャ構文を見る変数
     [SerializeField]
-    public int superChatLimit ; //スパチャ構文の限界数を見る変数
+    public int superChatLimit; //スパチャ構文の限界数を見る変数
 
     public int superChatPoint;
+
+    [SerializeField]
+    int choiseNum;
 
     private void Start()
     {
@@ -26,12 +29,16 @@ public class KoubunManager : MonoBehaviour
         makingSuperChat = GetComponent<MakingSuperChat>();
         originalButton = (GameObject)Resources.Load("Button");
         buttonMake = GetComponent<ButtonMake>();
-        KoubunGetRandom(0, koubunLibrary.koubunList.Count-1, 3);
+        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
+    }
+
+    public void KoubunChoiceReset()
+    {
+
     }
 
     private void KoubunGetRandom(int start, int end, int count)
     {
-
         List<int> numbers = new List<int>();
 
         for (int i = start; i <= end; i++)
@@ -43,7 +50,7 @@ public class KoubunManager : MonoBehaviour
         {
             int index = Random.Range(0, numbers.Count);
             int ransu = numbers[index];
-            koubunArrays[i] = koubunLibrary.koubunList[ransu];
+            koubunChoiceList.Add(koubunLibrary.koubunList[ransu]);
             numbers.RemoveAt(index);
         }
 
@@ -51,7 +58,7 @@ public class KoubunManager : MonoBehaviour
 
     public void KoubunRandomize()
     {
-        KoubunGetRandom(0, koubunLibrary.koubunList.Count-1, 3);
+        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, 3);
         buttonMake.DestroyButton();
         buttonMake.ButtonMaking(originalButton);
         makingSuperChat.ResetSuperChat();
