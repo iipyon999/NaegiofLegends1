@@ -1,9 +1,15 @@
 *.csproj
-*.cache
 NaegiofLegends1/SuperChatGame/Library/
 NaegiofLegends1/SuperChatGame/Temp/
 NaegiofLegends1/SuperChatGame/.vs/
-*.cache
+NaegiofLegends1/SuperChatGame/obj/
+NaegiofLegends1/SuperChatGame2/Library/
+NaegiofLegends1/SuperChatGame2/Temp/
+NaegiofLegends1/SuperChatGame2/.vs/
+NaegiofLegends1/SuperChatGame2/obj/
+NaegiofLegends1/SuperChatGame2/ProjectSettings/
+NaegiofLegends1/SuperChatGame2/Logs/
+NaegiofLegends1/SuperChatGame2/Packages/
 <<<<<<< HEAD
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset.meta
@@ -15,3 +21,5 @@ NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium SDF.asset.meta
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium.otf.meta
 NaegiofLegends1/SuperChatGame/Assets/Fonts/NotoSansJP-Medium.otf
 >>>>>>> 11cb21c1cdbc7aaadf5f747ef5726a41f1572463
+NaegiofLegends1/SuperChatGame2/.vsconfig
+NaegiofLegends1/SuperChatGame2/SuperChatGame2.sln
