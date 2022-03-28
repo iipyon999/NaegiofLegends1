@@ -2506,7 +2506,7 @@ MonoBehaviour:
   superChatNum: 0
   superChatLimit: 3
   superChatPoint: 0
-  choiseNum: 3
+  choiseNum: 5
 --- !u!4 &1904852535
 Transform:
   m_ObjectHideFlags: 0

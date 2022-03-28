@@ -11,11 +11,13 @@ public class MakingSuperChat : MonoBehaviour
     GameObject text;
     Text superChatText;
     ResponseManager responseManager;
+    ButtonMake buttonMake;
 
     private void Start()
     {
         koubunM = GameObject.Find("KoubunManager");
         koubunManager = koubunM.GetComponent<KoubunManager>();
+        buttonMake = koubunM.GetComponent<ButtonMake>();
         responseManager = GameObject.Find("ResponseManager").GetComponent<ResponseManager>();
         text = GameObject.Find("Text");
         superChatText = text.gameObject.GetComponent<Text>();
@@ -24,14 +26,21 @@ public class MakingSuperChat : MonoBehaviour
 
     public void SuperChat()
     {
-        string tagnum = this.tag;
-        int num = int.Parse(tagnum);
+        string chekingKoubunName;
         koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
         if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
-            superChatText.text = superChatText.text + koubunManager.koubunChoiceList[num].naiyou;
-            koubunManager.superChatPoint += koubunManager.koubunChoiceList[num].point;
-        }
+            for(int i = 0; i < koubunManager.koubunChoiceList.Count; i++)
+            {
+                chekingKoubunName = koubunManager.koubunChoiceList[i].name;
+                GameObject buttons = this.gameObject;
+                Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
+                if (text.text == chekingKoubunName)
+                {
+                    superChatText.text = superChatText.text + koubunManager.koubunChoiceList[i].naiyou;
+                    koubunManager.superChatPoint += koubunManager.koubunChoiceList[i].point;
+                }
+            }        }
     }
 
     public void ResetSuperChat()
