@@ -3,50 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Koubun
-{
-    public string name; //構文の名前
-    public string genre; //構文のジャンル。手にいれられる場所などに依存？
-    public string naiyou; //構文の中身
-    /*
-    public int ojisanPoint; //オジサンポイント
-    public int kimoPoint; //気持ち悪さを見るキモポイント
-    public int yabaiPoint;　//ヤバさをみるヤバポイント
-    */
-}
 
 public class KoubunManager : MonoBehaviour
 {
-    [SerializeField]
-    public List<Koubun> koubunLibrary = new List<Koubun>(); //構文用ソース
+    KoubunLibrary koubunLibrary; //構文集を持つスクリプトです
 
     [SerializeField]
-    string[] koubunName = new string[6]; //構文名前入力欄
-    [SerializeField]
-    string[] koubunGenre = new string[6]; //構文genre入力欄
-    [SerializeField]
-    string[] koubunNaiyou = new string[6]; //構文内容入力欄
-    [SerializeField]
-    public Koubun[] koubunArrays = new Koubun[3]; //実際に選択された構文
+    public List<Koubun> koubunChoiceList = new List<Koubun>(); //実際に選択された構文
 
+    MakingSuperChat makingSuperChat;
     private ButtonMake buttonMake;
     GameObject originalButton;
+    public int superChatNum = 0; //スパチャ構文を見る変数
+    [SerializeField]
+    public int superChatLimit; //スパチャ構文の限界数を見る変数
+
+    public int superChatPoint;
+
+    [SerializeField]
+    public int choiseNum; //いくつチョイスするか
 
     private void Start()
     {
+        koubunLibrary = GetComponent<KoubunLibrary>();
+        makingSuperChat = GetComponent<MakingSuperChat>();
         originalButton = (GameObject)Resources.Load("Button");
         buttonMake = GetComponent<ButtonMake>();
-        for (int i = 0; i < 6; i++) //Libraryに構文を格納
+        StartCoroutine("KoubunListCheck");
+    }
+
+    public void KoubunChoiceReset()
+    {
+        while (koubunChoiceList.Count > 0)
         {
-            koubunLibrary.Add(new Koubun() { name = koubunName[i], genre = koubunGenre[i], naiyou = koubunNaiyou[i] });
+            koubunChoiceList.RemoveAt(0);
         }
-        KoubunGetRandom(0, 5, 3);
     }
 
     private void KoubunGetRandom(int start, int end, int count)
     {
-
+        KoubunChoiceReset();
         List<int> numbers = new List<int>();
 
         for (int i = start; i <= end; i++)
@@ -58,7 +54,7 @@ public class KoubunManager : MonoBehaviour
         {
             int index = Random.Range(0, numbers.Count);
             int ransu = numbers[index];
-            koubunArrays[i] = koubunLibrary[ransu];
+            koubunChoiceList.Add(koubunLibrary.koubunList[ransu]);
             numbers.RemoveAt(index);
         }
 
@@ -66,9 +62,19 @@ public class KoubunManager : MonoBehaviour
 
     public void KoubunRandomize()
     {
-        KoubunGetRandom(0, 5, 3);
+        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
         buttonMake.DestroyButton();
         buttonMake.ButtonMaking(originalButton);
+        makingSuperChat.ResetSuperChat();
+    }
+
+    IEnumerator KoubunListCheck()
+    {
+        while (koubunLibrary.koubunList.Count != koubunLibrary.rowLength || koubunLibrary.rowLength == 0)
+        {
+            yield return null;
+            KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
+        }
     }
 
 }

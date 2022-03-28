@@ -10,11 +10,8 @@ public class ButtonMake : MonoBehaviour
     public GameObject parent;
     public KoubunManager koubunManager;
     public Text superChatText;
+    private KoubunLibrary koubunLibrary;
 
-    [SerializeField]
-    string[] koubunTest = new string[3];
-
-    public string naiyou;
 
     List<GameObject> buttonsLists = new List<GameObject>();
 
@@ -23,8 +20,8 @@ public class ButtonMake : MonoBehaviour
         parent = GameObject.Find("Text");
         superChatText = parent.gameObject.GetComponent<Text>();
         koubunManager = gameObject.GetComponent<KoubunManager>();
-        GameObject button = (GameObject)Resources.Load("Button");
-        ButtonMaking(button);
+        koubunLibrary = GetComponent<KoubunLibrary>();
+        StartCoroutine("KoubunListCheck");
     }
 
     void AddTag(string tagname)
@@ -53,7 +50,7 @@ public class ButtonMake : MonoBehaviour
 
     public void ButtonMaking(GameObject button)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < koubunManager.choiseNum; i++)
         {
             GameObject buttons = (GameObject)Instantiate(button, new Vector3(385, 120 - (i * 35), 0), Quaternion.identity);
             Button buttonNaiyou = buttons.gameObject.GetComponent<Button>();
@@ -61,7 +58,8 @@ public class ButtonMake : MonoBehaviour
             Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
             AddTag(i.ToString());
             buttons.tag = i.ToString();
-            text.text = koubunManager.koubunArrays[i].name; //作ったボタンの名前を変えている
+            text.text = koubunManager.koubunChoiceList[i].name; //作ったボタンの名前を変えている
+
             buttonsLists.Add(buttons);
         }
     }
@@ -73,4 +71,15 @@ public class ButtonMake : MonoBehaviour
             Destroy(buttonsLists[i]);
         }
     }
+
+    IEnumerator KoubunListCheck()
+    {
+        while (koubunLibrary.koubunList.Count != koubunLibrary.rowLength || koubunLibrary.rowLength == 0)
+        {
+            yield return null;
+            GameObject button = (GameObject)Resources.Load("Button");
+            ButtonMaking(button);
+        }
+    }
+
 }

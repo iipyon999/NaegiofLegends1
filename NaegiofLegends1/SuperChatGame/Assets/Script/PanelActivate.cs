@@ -6,8 +6,15 @@ using UnityEngine.UI;
 public class PanelActivate : MonoBehaviour
 {
     public GameObject panel;
-    public void PanelActivating()
+    public void PanelSetting()
     {
-        panel.SetActive(true);
+        if (panel.activeSelf == false)
+        {
+            panel.SetActive(true);
+        }
+        else
+        {
+            panel.SetActive(false);
+        }
     }
 }

@@ -60,14 +60,20 @@
     <Compile Include="Assets\Script\ButtonMake.cs" />
     <Compile Include="Assets\Script\ButtonScript.cs" />
     <Compile Include="Assets\Script\GameController.cs" />
+    <Compile Include="Assets\Script\KoubunLibrary.cs" />
     <Compile Include="Assets\Script\KoubunManager.cs" />
     <Compile Include="Assets\Script\MakingSuperChat.cs" />
     <Compile Include="Assets\Script\MenuManager.cs" />
     <Compile Include="Assets\Script\Menuselect.cs" />
     <Compile Include="Assets\Script\NGameController.cs" />
     <Compile Include="Assets\Script\PanelActivate.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Script\Scenario.cs" />
     <Compile Include="Assets\Script\TextChange.cs" />
+=======
+    <Compile Include="Assets\Script\ResponseManager.cs" />
+    <Compile Include="Assets\Script\Scenario.cs" />
+>>>>>>> e39656df3d4f4f6afcefd79d25cc44cd9b3b45f6
     <Compile Include="Assets\Script\YGameController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +83,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Resources\test.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

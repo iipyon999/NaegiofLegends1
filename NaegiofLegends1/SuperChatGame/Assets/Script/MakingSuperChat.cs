@@ -10,33 +10,44 @@ public class MakingSuperChat : MonoBehaviour
     KoubunManager koubunManager;
     GameObject text;
     Text superChatText;
-
-    public int superChatNum = 0;
-    [SerializeField]
-    public int superChatLimit;
+    ResponseManager responseManager;
 
     private void Start()
     {
         koubunM = GameObject.Find("KoubunManager");
         koubunManager = koubunM.GetComponent<KoubunManager>();
-        text = transform.parent.gameObject;
+        responseManager = GameObject.Find("ResponseManager").GetComponent<ResponseManager>();
+        text = GameObject.Find("Text");
         superChatText = text.gameObject.GetComponent<Text>();
+        superChatText.text = "";
     }
 
     public void SuperChat()
     {
         string tagnum = this.tag;
         int num = int.Parse(tagnum);
-        superChatNum++;
-        if (superChatNum < superChatLimit)
+        koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
+        if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
-            superChatText.text = superChatText.text + koubunManager.koubunArrays[num].naiyou;
+            superChatText.text = superChatText.text + koubunManager.koubunChoiceList[num].naiyou;
+            koubunManager.superChatPoint += koubunManager.koubunChoiceList[num].point;
         }
     }
 
     public void ResetSuperChat()
     {
-        superChatNum = 0;
+        superChatText = GameObject.Find("Text").GetComponent<Text>();
+        koubunManager.superChatNum = 0;
+        koubunManager.superChatPoint = 0;
+        superChatText.text = "";
+    }
+
+    public void SendSuperChat()
+    {
+        superChatText = GameObject.Find("Text").GetComponent<Text>();
+        responseManager.Response(koubunManager.superChatPoint);
+        koubunManager.superChatNum = 0;
+        koubunManager.superChatPoint = 0;
         superChatText.text = "";
     }
 

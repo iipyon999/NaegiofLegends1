@@ -10,7 +10,12 @@ public class GameController : MonoBehaviour
     List<Scenario> scenarios = new List<Scenario>();
 
     Scenario currentScenario;
+<<<<<<< HEAD
     public int index = 0;
+=======
+    int index = 0;
+
+>>>>>>> e39656df3d4f4f6afcefd79d25cc44cd9b3b45f6
 
     void Start()
     {
