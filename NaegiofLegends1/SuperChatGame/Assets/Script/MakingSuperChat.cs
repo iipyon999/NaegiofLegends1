@@ -30,7 +30,7 @@ public class MakingSuperChat : MonoBehaviour
         koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
         if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
-            for(int i = 0; i < koubunManager.koubunChoiceList.Count-1; i++)
+            for(int i = 0; i < koubunManager.koubunChoiceList.Count; i++)
             {
                 chekingKoubunName = koubunManager.koubunChoiceList[i].name;
                 GameObject buttons = this.gameObject;
