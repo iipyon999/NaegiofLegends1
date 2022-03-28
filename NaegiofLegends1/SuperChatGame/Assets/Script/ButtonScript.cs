@@ -19,34 +19,35 @@ public class ButtonScript : MonoBehaviour
                 "テスト3",
                 "テスト4",
                 "テスト5",
-                "なんだコイツを手に入れた"
+                "なんだコイツ！？を手に入れた"
             }
         };
-
+        gc.index = 0;
         var scenario02 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
             ScenarioID = "VDKscenario",
             Texts = new List<string>()
             {
-                "VDKtest",
-                "今配信しているのは……",
-                "Stylishnoodleと……",
-                "VDKと……",
-                "ふらんしすこ、この三人か……",
-                "どの配信者"
+                "VDKtest0",
+                "VDK1",
+                "VDK2",
+                "VDK3",
+                "VDK4",
+                "心の中にバケモン居るって……を手に入れた"
             }
         };
+        gc.index = 0;
         var scenario03 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
             ScenarioID = "しすこscenario",
             Texts = new List<string>()
             {
-                "しすこtest",
-                "今配信しているのは……",
-                "Stylishnoodleと……",
-                "VDKと……",
-                "ふらんしすこ、この三人か……",
-                "どの配信者"
+                "しすこtest0",
+                "ふらんしすこ1",
+                "ふらんしすこ2",
+                "ふらんしすこ3",
+                "ふらんしすこ4",
+                "ワンチャンは、居るのカナ？！を手に入れた"
             }
 
         };

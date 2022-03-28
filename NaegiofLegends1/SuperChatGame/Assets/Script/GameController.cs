@@ -79,6 +79,7 @@ public class GameController : MonoBehaviour
     public void Twitchbotan()
     {
         panel.SetActive(true);
+        index = 0;
     }
 }
 
