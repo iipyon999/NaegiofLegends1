@@ -6,10 +6,12 @@ public class ButtonScript : MonoBehaviour
 {
     public int num;
     GameController gc;
+    Menuselect menuselect;
 
     private void Start()
     {
         gc = GameObject.Find("GameController").GetComponent<GameController>();
+        menuselect = GameObject.Find("GameController").GetComponent<Menuselect>();
     }
 
     public void OnClick()
@@ -52,7 +54,6 @@ public class ButtonScript : MonoBehaviour
                 "ふらんしすこ4",
                 "ワンチャンは、居るのカナ？！を手に入れた"
             }
-
         };
 
         switch (num)
@@ -67,7 +68,7 @@ public class ButtonScript : MonoBehaviour
                 gc.SetScenario(scenario03);
                 break;
         }
-         gc.buttonPanel.SetActive(false);
+        gc.buttonPanel.SetActive(false);
     }
 
 }

@@ -47,9 +47,7 @@ public class KoubunLibrary : MonoBehaviour
 
         for (int i = 0; i < rowLength; i++)
         {
-
             string[] tempWords = textMessage[i].Split('\t'); //textMessageをカンマごとに分けたものを一時的にtempWordsに代入
-
             koubunList.Add(new Koubun());
             for (int n = 0; n < columnLength; n++)
             {
@@ -73,8 +71,6 @@ public class KoubunLibrary : MonoBehaviour
                         break;
                     default: Debug.Log("error");
                         break;
-
-
                 }
             }
         

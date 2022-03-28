@@ -54,12 +54,12 @@ public class GameController : MonoBehaviour
                     ScenarioID = "scenarioTwitchStart",
                     Texts = new List<string>()
                     {
-                "配信者が集まるプラットフォーム、Twitchとやらを見てみよう",
-                "今配信しているのは……",
-                "Stylishnoodleと……",
-                "VDKと……",
-                "ふらんしすこ、この三人か……",
-                "どの配信者を見てみようか？"
+                        "配信者が集まるプラットフォーム、Twitchとやらを見てみよう",
+                        "今配信しているのは……",
+                        "Stylishnoodleと……",
+                        "VDKと……",
+                        "ふらんしすこ、この三人か……",
+                        "どの配信者を見てみようか？"
                     }
                 };
                 break;
@@ -69,14 +69,14 @@ public class GameController : MonoBehaviour
                 {
                     ScenarioID = "scenarioYoutubeStart",
                     Texts = new List<string>()
-            {
-                "動画投稿者の集まるプラットフォーム、Youtubeを見てみようカナ？",
-                "新しく動画を投稿したのは……",
-                "ぺこーらと……",
-                "ひろきと……",
-                "スッパイギア、この三人か……",
-                "どの配信者を見てみようか？"
-            }
+                    {
+                        "動画投稿者の集まるプラットフォーム、Youtubeを見てみようカナ？",
+                        "新しく動画を投稿したのは……",
+                        "ぺこーらと……",
+                        "ひろきと……",
+                        "スッパイギア、この三人か……",
+                        "どの配信者を見てみようか？"
+                    }
                 };
 
                 break;
@@ -86,14 +86,14 @@ public class GameController : MonoBehaviour
                 {
                     ScenarioID = "scenarioNiconicoStart",
                     Texts = new List<string>()
-            {
-                "アンダーグラウンドな動画プラットフォーム、ニコニコ動画を見てみようカナ？",
-                "最近人気なのは……",
-                "淫夢と……",
-                "クッキー☆と……",
-                "加藤純一か……",
-                "どの動画を見てみようか？"
-            }
+                    {
+                        "アンダーグラウンドな動画プラットフォーム、ニコニコ動画を見てみようカナ？",
+                        "最近人気なのは……",
+                        "淫夢と……",
+                        "クッキー☆と……",
+                        "加藤純一か……",
+                        "どの動画を見てみようか？"
+                    }
                 };
 
                 break;

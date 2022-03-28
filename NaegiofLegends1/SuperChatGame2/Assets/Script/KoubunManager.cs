@@ -57,7 +57,6 @@ public class KoubunManager : MonoBehaviour
             koubunChoiceList.Add(koubunLibrary.koubunList[ransu]);
             numbers.RemoveAt(index);
         }
-
     }
 
     public void KoubunRandomize()

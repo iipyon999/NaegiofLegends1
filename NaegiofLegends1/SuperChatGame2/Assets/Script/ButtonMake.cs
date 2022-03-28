@@ -12,7 +12,6 @@ public class ButtonMake : MonoBehaviour
     public Text superChatText;
     private KoubunLibrary koubunLibrary;
 
-
     public List<GameObject> buttonsLists = new List<GameObject>();
 
     void Start()
