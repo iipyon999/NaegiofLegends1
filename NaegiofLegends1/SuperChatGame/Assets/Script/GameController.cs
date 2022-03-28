@@ -8,14 +8,10 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Text scenarioMessage;
     List<Scenario> scenarios = new List<Scenario>();
-
+    bool panelkirikae = false;
     Scenario currentScenario;
-<<<<<<< HEAD
-    public int index = 0;
-=======
-    int index = 0;
 
->>>>>>> e39656df3d4f4f6afcefd79d25cc44cd9b3b45f6
+    public int index = 0;
 
     void Start()
     {
@@ -62,7 +58,8 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            Twitchbotan(); 
+            Twitchbotan();
+            ExitScenario();
         }
     }
 
@@ -83,8 +80,11 @@ public class GameController : MonoBehaviour
     }
     public void Twitchbotan()
     {
-        panel.SetActive(true);
-        index = 0;
+        if (panelkirikae == false)
+        {
+            panel.SetActive(true);
+        }
+        panelkirikae = true;
     }
 }
 

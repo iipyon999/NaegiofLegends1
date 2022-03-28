@@ -1,3 +1,5 @@
+*.csproj
+*.cache
 NaegiofLegends1/SuperChatGame/Library/
 NaegiofLegends1/SuperChatGame/Temp/
 NaegiofLegends1/SuperChatGame/.vs/
