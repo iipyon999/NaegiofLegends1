@@ -18,16 +18,16 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        if (GameObject.FindWithTag("ScenarioText") == true)
-        {
-            scenarioText = GameObject.FindWithTag("ScenarioText").GetComponent<Text>();
-        }
         DontDestroyOnLoad(this); //色んなシーンで使えるように
         StartingScenarioSet(); //始まりのシナリオをセットするための関数
     }
 
-    void StartingScenarioSet()
+    public void StartingScenarioSet()
     {
+        if (GameObject.Find("ScenarioText") == true)
+        {
+            scenarioText = GameObject.Find("ScenarioText").GetComponent<Text>();
+        }
         var startingScenario = new Scenario(); //始まりのシナリオを格納するための場所
         string activeSceneName = SceneManager.GetActiveScene().name; //現在のシーンの名前
 
@@ -104,7 +104,10 @@ public class GameController : MonoBehaviour
     public void SetScenario(Scenario scenario)
     {
         currentScenario = scenario;
-        scenarioText.text = currentScenario.Texts[0];
+        if (scenarioText != null)
+        {
+            scenarioText.text = currentScenario.Texts[0];
+        }
     }
 
     public void SetNextMessage()

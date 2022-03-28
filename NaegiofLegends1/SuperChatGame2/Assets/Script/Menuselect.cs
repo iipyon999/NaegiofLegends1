@@ -5,8 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Menuselect : MonoBehaviour
 {
+    GameController gameController;
+
+    private void Start()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+    }
+
     public void StartGame(int index)
     {
+        SceneManager.sceneLoaded += SceneLoaded;
         SceneManager.LoadScene(index);
     }
     public void EndGame()
@@ -16,5 +24,10 @@ public class Menuselect : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        gameController.StartingScenarioSet();
     }
 }
