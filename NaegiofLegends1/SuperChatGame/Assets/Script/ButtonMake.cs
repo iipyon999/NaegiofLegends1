@@ -13,7 +13,7 @@ public class ButtonMake : MonoBehaviour
     private KoubunLibrary koubunLibrary;
 
 
-    List<GameObject> buttonsLists = new List<GameObject>();
+    public List<GameObject> buttonsLists = new List<GameObject>();
 
     void Start()
     {
@@ -24,42 +24,14 @@ public class ButtonMake : MonoBehaviour
         StartCoroutine("KoubunListCheck");
     }
 
-    void AddTag(string tagname)
-    {
-        UnityEngine.Object[] asset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
-        if ((asset != null) && (asset.Length > 0))
-        {
-            SerializedObject so = new SerializedObject(asset[0]);
-            SerializedProperty tags = so.FindProperty("tags");
-
-            for (int i = 0; i < tags.arraySize; ++i)
-            {
-                if (tags.GetArrayElementAtIndex(i).stringValue == tagname)
-                {
-                    return;
-                }
-            }
-
-            int index = tags.arraySize;
-            tags.InsertArrayElementAtIndex(index);
-            tags.GetArrayElementAtIndex(index).stringValue = tagname;
-            so.ApplyModifiedProperties();
-            so.Update();
-        }
-    }
-
     public void ButtonMaking(GameObject button)
     {
         for (int i = 0; i < koubunManager.choiseNum; i++)
         {
             GameObject buttons = (GameObject)Instantiate(button, new Vector3(385, 120 - (i * 35), 0), Quaternion.identity);
-            Button buttonNaiyou = buttons.gameObject.GetComponent<Button>();
             buttons.transform.SetParent(this.parent.transform, false);
             Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
-            AddTag(i.ToString());
-            buttons.tag = i.ToString();
             text.text = koubunManager.koubunChoiceList[i].name; //作ったボタンの名前を変えている
-
             buttonsLists.Add(buttons);
         }
     }
