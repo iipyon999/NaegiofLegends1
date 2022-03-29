@@ -7,64 +7,51 @@ using UnityEngine.UI;
 public class KoubunManager : MonoBehaviour
 {
     KoubunLibrary koubunLibrary; //構文集を持つスクリプトです
+    GameController gameController;
 
     [SerializeField]
-    public List<Koubun> koubunChoiceList = new List<Koubun>(); //実際に選択された構文
+    public static List<Koubun> koubunChoiceList = new List<Koubun>(); //実際に選択された構文
 
-    MakingSuperChat makingSuperChat;
-    private ButtonMake buttonMake;
-    GameObject originalButton;
     public int superChatNum = 0; //スパチャ構文を見る変数
     [SerializeField]
     public int superChatLimit; //スパチャ構文の限界数を見る変数
 
     public int superChatPoint;
 
-    [SerializeField]
-    public int choiseNum; //いくつチョイスするか
 
     private void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         koubunLibrary = GetComponent<KoubunLibrary>();
-        makingSuperChat = GetComponent<MakingSuperChat>();
-        originalButton = (GameObject)Resources.Load("Button");
-        buttonMake = GetComponent<ButtonMake>();
-        StartCoroutine("KoubunListCheck");
     }
 
-    public void KoubunChoiceReset()
+    public void KoubunLoad()
     {
-        while (koubunChoiceList.Count > 0)
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        if (gameController.currentScenario != null)
         {
-            koubunChoiceList.RemoveAt(0);
+            bool koubunCheck = false;
+            string currentScenarioID = gameController.currentScenario.ScenarioID;
+            for(int i = 0; i < koubunChoiceList.Count; i++) //選択された構文リストを探すループ
+            {
+                //選択された構文リストの中に、現在のシナリオと同じIDが存在する場合はチェックしておきたい
+                if(currentScenarioID == koubunChoiceList[i].scenarioID) 
+                {
+                    koubunCheck = true;
+                }
+            }
+            if(koubunCheck == false) //もしfalseなら、つまり選択された構文リストの中に現在のシナリオと同じIDが存在しない場合
+            {
+                //構文リストの中から、現在のシナリオと同じIDを持つものを探して格納したい
+                for(int i = 0; i< koubunLibrary.koubunList.Count; i++) 
+                {
+                    if(currentScenarioID == koubunLibrary.koubunList[i].scenarioID)
+                    {
+                        koubunChoiceList.Add(koubunLibrary.koubunList[i]);
+                    }
+                }
+            }
         }
-    }
-
-    private void KoubunGetRandom(int start, int end, int count)
-    {
-        KoubunChoiceReset();
-        List<int> numbers = new List<int>();
-
-        for (int i = start; i <= end; i++)
-        {
-            numbers.Add(i);
-        }
-
-        for (int i = 0; i < count; i++)
-        {
-            int index = Random.Range(0, numbers.Count);
-            int ransu = numbers[index];
-            koubunChoiceList.Add(koubunLibrary.koubunList[ransu]);
-            numbers.RemoveAt(index);
-        }
-    }
-
-    public void KoubunRandomize()
-    {
-        KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
-        buttonMake.DestroyButton();
-        buttonMake.ButtonMaking(originalButton);
-        makingSuperChat.ResetSuperChat();
     }
 
     public bool KoubunListChecking() //構文リストが正しく存在しているかどうかを確認する関数
@@ -78,15 +65,6 @@ public class KoubunManager : MonoBehaviour
             return true;
         else
             return false;
-    }
-
-    IEnumerator KoubunListCheck()
-    {
-        while (KoubunListChecking())
-        {
-            yield return null;
-            KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);
-        }
     }
 
 }

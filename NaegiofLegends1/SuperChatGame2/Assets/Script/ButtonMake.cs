@@ -18,17 +18,18 @@ public class ButtonMake : MonoBehaviour
         parent = GameObject.Find("SuperChatText");
         superChatText = parent.gameObject.GetComponent<Text>();
         koubunManager = gameObject.GetComponent<KoubunManager>();
-        StartCoroutine("KoubunListCheck");
+        GameObject originalButton = (GameObject)Resources.Load("Button");
+        ButtonMaking(originalButton);
     }
 
     public void ButtonMaking(GameObject button)
     {
-        for (int i = 0; i < koubunManager.choiseNum; i++)
+        for (int i = 0; i < KoubunManager.koubunChoiceList.Count; i++)
         {
             GameObject buttons = (GameObject)Instantiate(button, new Vector3(385, 120 - (i * 35), 0), Quaternion.identity);
             buttons.transform.SetParent(this.parent.transform, false);
             Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
-            text.text = koubunManager.koubunChoiceList[i].name; //作ったボタンの名前を変えている
+            text.text = KoubunManager.koubunChoiceList[i].name; //作ったボタンの名前を変えている
             buttonsLists.Add(buttons);
         }
     }
@@ -41,15 +42,4 @@ public class ButtonMake : MonoBehaviour
             buttonsLists.RemoveAt(0);
         }
     }
-
-    IEnumerator KoubunListCheck()
-    {
-        while (koubunManager.KoubunListChecking())
-        {
-            yield return null;
-            GameObject button = (GameObject)Resources.Load("Button");
-            ButtonMaking(button);
-        }
-    }
-
 }

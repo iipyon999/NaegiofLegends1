@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    KoubunManager koubunManager;
+
     [SerializeField]
     Text scenarioText; //シナリオを表示するための場所
     List<Scenario> scenarios = new List<Scenario>();
@@ -24,13 +26,14 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(this); //色んなシーンで使えるように
         StartingScenarioSet(); //始まりのシナリオをセットするための関数
         menuselect = GetComponent<Menuselect>();
+        koubunManager = GameObject.Find("KoubunManager").GetComponent<KoubunManager>();
     }
 
     public void StartingScenarioSet()
     {
         buttonPanelChange = false; //呼ばれるたびに一旦falseにする
         BackSample = false;   //シーンが変わるたびに一旦Falseにする
-
+        
         if (GameObject.Find("Canvas") == true) //キャンバスがあるかどうかを確認する
         {
             canvas = GameObject.Find("Canvas"); //キャンバスを取得する
@@ -119,6 +122,7 @@ public class GameController : MonoBehaviour
                 SetNextMessage();
             }
         }
+        Debug.Log(KoubunManager.koubunChoiceList.Count);
     }
 
     public void SetScenario(Scenario scenario)
@@ -127,6 +131,7 @@ public class GameController : MonoBehaviour
         if (scenarioText != null)
         {
             scenarioText.text = currentScenario.Texts[0];
+            koubunManager.KoubunLoad();
         }
     }
 

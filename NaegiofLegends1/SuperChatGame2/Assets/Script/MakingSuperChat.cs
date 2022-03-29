@@ -30,15 +30,15 @@ public class MakingSuperChat : MonoBehaviour
         koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
         if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
-            for(int i = 0; i < koubunManager.koubunChoiceList.Count; i++)
+            for(int i = 0; i < KoubunManager.koubunChoiceList.Count; i++)
             {
-                chekingKoubunName = koubunManager.koubunChoiceList[i].name;
+                chekingKoubunName = KoubunManager.koubunChoiceList[i].name;
                 GameObject buttons = this.gameObject;
                 Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
                 if (text.text == chekingKoubunName)
                 {
-                    superChatText.text = superChatText.text + koubunManager.koubunChoiceList[i].naiyou;
-                    koubunManager.superChatPoint += koubunManager.koubunChoiceList[i].point;
+                    superChatText.text = superChatText.text + KoubunManager.koubunChoiceList[i].naiyou;
+                    koubunManager.superChatPoint += KoubunManager.koubunChoiceList[i].point;
                 }
             }        }
     }
