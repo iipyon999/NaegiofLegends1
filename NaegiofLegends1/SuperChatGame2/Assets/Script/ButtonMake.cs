@@ -7,12 +7,12 @@ using UnityEditor;
 
 public class ButtonMake : MonoBehaviour
 {
-    public GameObject parent;
-    public KoubunManager koubunManager;
-    public Text superChatText;
+    public GameObject parent; //ボタンの親
+    public KoubunManager koubunManager; //構文マネージャ
+    public Text superChatText; //変えたいスーパーチャットのテキスト
     private KoubunLibrary koubunLibrary;
 
-    public List<GameObject> buttonsLists = new List<GameObject>();
+    public List<GameObject> buttonsLists = new List<GameObject>(); //ここで作られたボタンのリスト
 
     void Start()
     {

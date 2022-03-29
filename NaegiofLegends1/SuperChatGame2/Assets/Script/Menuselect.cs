@@ -14,7 +14,7 @@ public class Menuselect : MonoBehaviour
 
     public void StartGame(int index)
     {
-        SceneManager.sceneLoaded += SceneLoaded;
+        SceneManager.sceneLoaded += SceneLoaded; //以降シーン切り替えでこれを呼ぶたびに以下のコードが呼ばれる
         SceneManager.LoadScene(index);
     }
     public void EndGame()
@@ -26,8 +26,8 @@ public class Menuselect : MonoBehaviour
 #endif
     }
 
-    void SceneLoaded(Scene scene, LoadSceneMode mode)
+    void SceneLoaded(Scene scene, LoadSceneMode mode) //シーン切り替えで呼びたい関数
     {
-        gameController.StartingScenarioSet();
+        gameController.StartingScenarioSet(); //始まりのシナリオセッティング
     }
 }

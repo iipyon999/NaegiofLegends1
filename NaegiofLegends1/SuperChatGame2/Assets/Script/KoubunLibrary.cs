@@ -25,14 +25,13 @@ public class KoubunLibrary : MonoBehaviour
     public int rowLength; //テキスト内の行数を取得する変数
     public int columnLength; //テキスト内の列数を取得する変数
 
-    public string[] koubunBeforeData;
     [SerializeField]
     public List<Koubun> koubunList = new List<Koubun>(); //構文用ソース
 
     private void Start()
     {
         TextAsset textasset = new TextAsset(); //テキストファイルのデータを取得するインスタンスを作成
-        textasset = Resources.Load("Test", typeof(TextAsset)) as TextAsset; //Resourcesフォルダから対象テキストを取得
+        textasset = Resources.Load("KoubunDataList", typeof(TextAsset)) as TextAsset; //Resourcesフォルダから対象テキストを取得
         string TextLines = textasset.text; //テキスト全体をstring型で入れる変数を用意して入れる
 
         //Splitで一行づつを代入した1次配列を作成
@@ -52,7 +51,7 @@ public class KoubunLibrary : MonoBehaviour
             for (int n = 0; n < columnLength; n++)
             {
                 textWords[i, n] = tempWords[n]; //2次配列textWordsにカンマごとに分けたtempWordsを代入していく
-                switch (n)
+                switch (n) //必ずKoubunクラスの要素順と一致させること！！！
                 {
                     case 0:
                         koubunList[i].ID = int.Parse(textWords[i, n]);
