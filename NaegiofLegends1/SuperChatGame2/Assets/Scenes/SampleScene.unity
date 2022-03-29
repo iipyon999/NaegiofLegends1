@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 623893792}
   - component: {fileID: 623893791}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SuperChatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2755,10 +2755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be06aaf4107fc8346b2f719ec2aec746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMessage: []
-  rowLength: 0
-  columnLength: 0
-  koubunBeforeData: []
   koubunList: []
 --- !u!1 &1989354374
 GameObject:

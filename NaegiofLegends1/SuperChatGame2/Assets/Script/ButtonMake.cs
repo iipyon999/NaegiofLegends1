@@ -10,16 +10,14 @@ public class ButtonMake : MonoBehaviour
     public GameObject parent; //ボタンの親
     public KoubunManager koubunManager; //構文マネージャ
     public Text superChatText; //変えたいスーパーチャットのテキスト
-    private KoubunLibrary koubunLibrary;
 
     public List<GameObject> buttonsLists = new List<GameObject>(); //ここで作られたボタンのリスト
 
     void Start()
     {
-        parent = GameObject.Find("Text");
+        parent = GameObject.Find("SuperChatText");
         superChatText = parent.gameObject.GetComponent<Text>();
         koubunManager = gameObject.GetComponent<KoubunManager>();
-        koubunLibrary = GetComponent<KoubunLibrary>();
         StartCoroutine("KoubunListCheck");
     }
 
@@ -37,15 +35,16 @@ public class ButtonMake : MonoBehaviour
 
     public void DestroyButton()
     {
-        for(int i = 0; i < buttonsLists.Count; i++)
+        while (buttonsLists.Count > 0)
         {
-            Destroy(buttonsLists[i]);
+            Destroy(buttonsLists[0]);
+            buttonsLists.RemoveAt(0);
         }
     }
 
     IEnumerator KoubunListCheck()
     {
-        while (koubunLibrary.koubunList.Count != koubunLibrary.rowLength || koubunLibrary.rowLength == 0)
+        while (koubunManager.KoubunListChecking())
         {
             yield return null;
             GameObject button = (GameObject)Resources.Load("Button");

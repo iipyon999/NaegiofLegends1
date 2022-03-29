@@ -67,9 +67,22 @@ public class KoubunManager : MonoBehaviour
         makingSuperChat.ResetSuperChat();
     }
 
+    public bool KoubunListChecking() //構文リストが正しく存在しているかどうかを確認する関数
+    {
+        bool listExistence;
+        if (koubunLibrary.koubunList == null || koubunLibrary.koubunTextDataList == null)
+            listExistence = false;
+        else
+            listExistence = true;
+        if (listExistence == false || koubunLibrary.koubunTextDataList.GetLength(0) != koubunLibrary.koubunList.Count)
+            return true;
+        else
+            return false;
+    }
+
     IEnumerator KoubunListCheck()
     {
-        while (koubunLibrary.koubunList.Count != koubunLibrary.rowLength || koubunLibrary.rowLength == 0)
+        while (KoubunListChecking())
         {
             yield return null;
             KoubunGetRandom(0, koubunLibrary.koubunList.Count - 1, choiseNum);

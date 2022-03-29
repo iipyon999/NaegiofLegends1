@@ -19,7 +19,7 @@ public class MakingSuperChat : MonoBehaviour
         koubunManager = koubunM.GetComponent<KoubunManager>();
         buttonMake = koubunM.GetComponent<ButtonMake>();
         responseManager = GameObject.Find("ResponseManager").GetComponent<ResponseManager>();
-        text = GameObject.Find("Text");
+        text = GameObject.Find("SuperChatText");
         superChatText = text.gameObject.GetComponent<Text>();
         superChatText.text = "";
     }
@@ -45,7 +45,7 @@ public class MakingSuperChat : MonoBehaviour
 
     public void ResetSuperChat()
     {
-        superChatText = GameObject.Find("Text").GetComponent<Text>();
+        superChatText = GameObject.Find("SuperChatText").GetComponent<Text>();
         koubunManager.superChatNum = 0;
         koubunManager.superChatPoint = 0;
         superChatText.text = "";
@@ -53,7 +53,7 @@ public class MakingSuperChat : MonoBehaviour
 
     public void SendSuperChat()
     {
-        superChatText = GameObject.Find("Text").GetComponent<Text>();
+        superChatText = GameObject.Find("SuperChatText").GetComponent<Text>();
         responseManager.Response(koubunManager.superChatPoint);
         koubunManager.superChatNum = 0;
         koubunManager.superChatPoint = 0;
