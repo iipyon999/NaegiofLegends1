@@ -55,6 +55,45 @@ public class ButtonScript : MonoBehaviour
                 "ワンチャンは、居るのカナ？！を手に入れた"
             }
         };
+        var scenario04 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
+        {
+            ScenarioID = "しすこscenario",
+            Texts = new List<string>()
+            {
+                "しすこtest0",
+                "ふらんしすこ1",
+                "ふらんしすこ2",
+                "ふらんしすこ3",
+                "ふらんしすこ4",
+                "ワンチャンは、居るのカナ？！を手に入れた"
+            }
+        };
+        var scenario05 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
+        {
+            ScenarioID = "しすこscenario",
+            Texts = new List<string>()
+            {
+                "しすこtest0",
+                "ふらんしすこ1",
+                "ふらんしすこ2",
+                "ふらんしすこ3",
+                "ふらんしすこ4",
+                "ワンチャンは、居るのカナ？！を手に入れた"
+            }
+        };
+        var scenario06 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
+        {
+            ScenarioID = "しすこscenario",
+            Texts = new List<string>()
+            {
+                "しすこtest0",
+                "ふらんしすこ1",
+                "ふらんしすこ2",
+                "ふらんしすこ3",
+                "ふらんしすこ4",
+                "ワンチャンは、居るのカナ？！を手に入れた"
+            }
+        };
 
         switch (num)
         {
@@ -67,9 +106,18 @@ public class ButtonScript : MonoBehaviour
             case 3:
                 gc.SetScenario(scenario03);
                 break;
+            case 4:
+                gc.SetScenario(scenario04);
+                break;
+            case 5:
+                gc.SetScenario(scenario05);
+                break;
+            case 6:
+                gc.SetScenario(scenario06);
+                break;
         }
         gc.buttonPanel.SetActive(false);
+        gc.BackSample = true;
     }
-
 }
 

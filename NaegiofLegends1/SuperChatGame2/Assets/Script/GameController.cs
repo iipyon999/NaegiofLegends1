@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public Scenario currentScenario; //public化して他のところから参照できるように
     private GameObject canvas; //キャンバスを取得
     public GameObject buttonPanel; // ボタン用のパネルを取得
+    public bool BackSample;
+    Menuselect menuselect;
 
     public int index = 0;
 
@@ -21,11 +23,13 @@ public class GameController : MonoBehaviour
     {
         DontDestroyOnLoad(this); //色んなシーンで使えるように
         StartingScenarioSet(); //始まりのシナリオをセットするための関数
+        menuselect = GetComponent<Menuselect>();
     }
 
     public void StartingScenarioSet()
     {
         buttonPanelChange = false; //呼ばれるたびに一旦falseにする
+        BackSample = false;   //シーンが変わるたびに一旦Falseにする
 
         if (GameObject.Find("Canvas") == true) //キャンバスがあるかどうかを確認する
         {
@@ -137,6 +141,10 @@ public class GameController : MonoBehaviour
         {
             buttonPanelActivator();
             ExitScenario();
+            if(BackSample == true)
+            {
+                menuselect.StartGame(1);
+            }
         }
     }
 
