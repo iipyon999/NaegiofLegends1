@@ -122,7 +122,6 @@ public class GameController : MonoBehaviour
                 SetNextMessage();
             }
         }
-        Debug.Log(KoubunManager.koubunChoiceList.Count);
     }
 
     public void SetScenario(Scenario scenario)
