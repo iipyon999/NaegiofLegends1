@@ -57,41 +57,80 @@ public class ButtonScript : MonoBehaviour
         };
         var scenario04 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
-            ScenarioID = "しすこscenario",
+            ScenarioID = "ぺこらscenario",
             Texts = new List<string>()
             {
-                "しすこtest0",
-                "ふらんしすこ1",
-                "ふらんしすこ2",
-                "ふらんしすこ3",
-                "ふらんしすこ4",
-                "ワンチャンは、居るのカナ？！を手に入れた"
+                "ぺこーらテスト",
+                "ぺこーらテスト1",
+                "ぺこーらテスト2",
+                "ぺこーらテスト3",
+                "ぺこーらテスト4",
+                "ぺコーラいつもありがとう！を手に入れた"
             }
         };
         var scenario05 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
-            ScenarioID = "しすこscenario",
+            ScenarioID = "ひろゆきscenario",
             Texts = new List<string>()
             {
-                "しすこtest0",
-                "ふらんしすこ1",
-                "ふらんしすこ2",
-                "ふらんしすこ3",
-                "ふらんしすこ4",
-                "ワンチャンは、居るのカナ？！を手に入れた"
+                "ひろゆきtest0",
+                "ひろゆき1",
+                "ひろゆき2",
+                "ひろゆき3",
+                "ひろゆき4",
+                "なんかそういうデータあるんすか？を手に入れた"
             }
         };
         var scenario06 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
         {
-            ScenarioID = "しすこscenario",
+            ScenarioID = "パイギscenario",
             Texts = new List<string>()
             {
-                "しすこtest0",
-                "ふらんしすこ1",
-                "ふらんしすこ2",
-                "ふらんしすこ3",
-                "ふらんしすこ4",
-                "ワンチャンは、居るのカナ？！を手に入れた"
+                "パイギ0",
+                "パイギ1",
+                "パイギ2",
+                "パイギ3",
+                "パイギ4",
+                "俺はスパイギア。を手に入れた"
+            }
+        };
+        var scenario07 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
+        {
+            ScenarioID = "淫夢scenario",
+            Texts = new List<string>()
+            {
+                "淫夢0",
+                "淫夢1",
+                "淫夢2",
+                "淫夢3",
+                "淫夢4",
+                "ケツ舐められたことあんのかよ誰かによ を手に入れた"
+            }
+        };
+        var scenario08 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
+        {
+            ScenarioID = "ク☆scenario",
+            Texts = new List<string>()
+            {
+                "クッキー0",
+                "クッキー1",
+                "クッキー2",
+                "クッキー3",
+                "クッキー4",
+                "今日もいい天気☆を手に入れた"
+            }
+        };
+        var scenario09 = new Scenario()   //varはintとかのなんにでもなる、右辺によって変化する
+        {
+            ScenarioID = "加藤純一scenario",
+            Texts = new List<string>()
+            {
+                "じゅん0",
+                "じゅん1",
+                "じゅん2",
+                "じゅん3",
+                "じゅん4",
+                "だよなぁ？！ を手に入れた"
             }
         };
 
@@ -114,6 +153,15 @@ public class ButtonScript : MonoBehaviour
                 break;
             case 6:
                 gc.SetScenario(scenario06);
+                break;
+            case 7:
+                gc.SetScenario(scenario07);
+                break;
+            case 8:
+                gc.SetScenario(scenario08);
+                break;
+            case 9:
+                gc.SetScenario(scenario09);
                 break;
         }
         gc.buttonPanel.SetActive(false);
