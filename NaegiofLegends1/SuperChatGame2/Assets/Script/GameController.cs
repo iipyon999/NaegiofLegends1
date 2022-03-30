@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     public int ojisanActionLimit; //おじさんの行動可能な回数
 
+    public int superChatSendCount = 0;
+
     void Start()
     {
         DontDestroyOnLoad(this); //色んなシーンで使えるように
@@ -45,6 +47,7 @@ public class GameController : MonoBehaviour
         int remainNum = gameControllerCounts.Count;
         for(; remainNum > 1;)
         {
+            superChatSendCount = 0;
             Destroy(gameControllerCounts[remainNum-1]);
             gameControllerCounts.RemoveAt(remainNum-1);
             remainNum = gameControllerCounts.Count;

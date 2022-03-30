@@ -16,7 +16,7 @@ public class KoubunManager : MonoBehaviour
     [SerializeField]
     public int superChatLimit; //スパチャ構文の限界数を見る変数
 
-    public int superChatPoint;
+    public int superChatPoint; //スパチャのポイントを見る
 
 
     private void Start()

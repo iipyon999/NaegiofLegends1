@@ -12,16 +12,32 @@ public class MakingSuperChat : MonoBehaviour
     Text superChatText;
     ResponseManager responseManager;
     ButtonMake buttonMake;
+    GameController gameController;
+
+    public GameObject endingButton;
+    public Text OjisanMoneyText;
+    public int OjisanMoney;
+
+    Text SendText;
+    int superChatCount;
+    int ojisanMoneyStock;
 
     private void Start()
     {
         koubunM = GameObject.Find("KoubunManager");
         koubunManager = koubunM.GetComponent<KoubunManager>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         buttonMake = koubunM.GetComponent<ButtonMake>();
         responseManager = GameObject.Find("ResponseManager").GetComponent<ResponseManager>();
         text = GameObject.Find("SuperChatText");
         superChatText = text.gameObject.GetComponent<Text>();
         superChatText.text = "";
+        SendText = GameObject.Find("SendText").GetComponent<Text>();
+        OjisanMoneyCheck();
+        if (gameController.superChatSendCount > 0)
+        {
+            endingButton.SetActive(true);
+        }
     }
 
     public void SuperChat()
@@ -30,7 +46,7 @@ public class MakingSuperChat : MonoBehaviour
         koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
         if (koubunManager.superChatNum <= koubunManager.superChatLimit)
         {
-            for(int i = 0; i < KoubunManager.koubunChoiceList.Count; i++)
+            for (int i = 0; i < KoubunManager.koubunChoiceList.Count; i++)
             {
                 chekingKoubunName = KoubunManager.koubunChoiceList[i].name;
                 GameObject buttons = this.gameObject;
@@ -40,7 +56,8 @@ public class MakingSuperChat : MonoBehaviour
                     superChatText.text = superChatText.text + KoubunManager.koubunChoiceList[i].naiyou;
                     koubunManager.superChatPoint += KoubunManager.koubunChoiceList[i].point;
                 }
-            }        }
+            }
+        }
     }
 
     public void ResetSuperChat()
@@ -58,6 +75,23 @@ public class MakingSuperChat : MonoBehaviour
         koubunManager.superChatNum = 0;
         koubunManager.superChatPoint = 0;
         superChatText.text = "";
+        gameController.superChatSendCount++;
+        if(gameController.superChatSendCount > 0)
+        {
+            endingButton.SetActive(true);
+        }
+        OjisanMoneyCheck();
     }
 
+    void OjisanMoneyCheck()
+    {
+        ojisanMoneyStock = OjisanMoney - (gameController.superChatSendCount * 10000);
+        OjisanMoneyText.text = "おぢさんのおサイフの中身(/ω＼)\n" + ojisanMoneyStock;
+        if (ojisanMoneyStock <= 0)
+        {
+            SendText.text = "お金なくなっちゃった（涙）";
+            Destroy(GetComponent<MakingSuperChat>());
+        }
+
+    }
 }

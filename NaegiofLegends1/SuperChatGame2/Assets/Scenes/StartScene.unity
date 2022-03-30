@@ -172,7 +172,7 @@ MonoBehaviour:
   BackSample: 0
   index: 0
   ojisanAction: 0
-  ojisanActionLimit: 3
+  ojisanActionLimit: 5
 --- !u!114 &26440566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   superChatNum: 0
-  superChatLimit: 3
+  superChatLimit: 5
   superChatPoint: 0
 --- !u!1 &245355764
 GameObject:
