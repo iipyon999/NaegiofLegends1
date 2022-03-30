@@ -2239,6 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OjisanActionMarkerLists: []
+  ojisanMoney: 100000
 --- !u!4 &976783212
 Transform:
   m_ObjectHideFlags: 0
@@ -3098,9 +3099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5779a64ebf378ca4b981dd2dedc108e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endingButton: {fileID: 586782276}
-  OjisanMoneyText: {fileID: 988097866}
-  OjisanMoney: 100000
 --- !u!1 &1989354374
 GameObject:
   m_ObjectHideFlags: 0

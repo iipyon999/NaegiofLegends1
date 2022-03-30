@@ -12,6 +12,8 @@ public class OjisanActionManager : MonoBehaviour
 
     public List<GameObject> OjisanActionMarkerLists = new List<GameObject>();
 
+    public int ojisanMoney;
+
     // Start is called before the first frame update
     void Start()
     {

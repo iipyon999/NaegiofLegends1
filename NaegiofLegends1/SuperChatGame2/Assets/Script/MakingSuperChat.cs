@@ -13,10 +13,11 @@ public class MakingSuperChat : MonoBehaviour
     ResponseManager responseManager;
     ButtonMake buttonMake;
     GameController gameController;
+    OjisanActionManager ojisanActionManager;
+    GameObject canvas;
 
-    public GameObject endingButton;
-    public Text OjisanMoneyText;
-    public int OjisanMoney;
+    GameObject endingButton;
+    Text OjisanMoneyText;
 
     Text SendText;
     int superChatCount;
@@ -30,6 +31,10 @@ public class MakingSuperChat : MonoBehaviour
         buttonMake = koubunM.GetComponent<ButtonMake>();
         responseManager = GameObject.Find("ResponseManager").GetComponent<ResponseManager>();
         text = GameObject.Find("SuperChatText");
+        canvas = GameObject.Find("Canvas");
+        ojisanActionManager = GameObject.Find("OjisanActionManager").GetComponent<OjisanActionManager>();
+        endingButton = canvas.transform.Find("EndingButton").gameObject;
+        OjisanMoneyText = GameObject.Find("OjisanMoneyText").GetComponent<Text>();
         superChatText = text.gameObject.GetComponent<Text>();
         superChatText.text = "";
         SendText = GameObject.Find("SendText").GetComponent<Text>();
@@ -85,7 +90,7 @@ public class MakingSuperChat : MonoBehaviour
 
     void OjisanMoneyCheck()
     {
-        ojisanMoneyStock = OjisanMoney - (gameController.superChatSendCount * 10000);
+        ojisanMoneyStock = ojisanActionManager.ojisanMoney - (gameController.superChatSendCount * 10000);
         OjisanMoneyText.text = "おぢさんのおサイフの中身(/ω＼)\n" + ojisanMoneyStock;
         if (ojisanMoneyStock <= 0)
         {
