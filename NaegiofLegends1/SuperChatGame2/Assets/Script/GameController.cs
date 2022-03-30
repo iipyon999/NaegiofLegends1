@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
     {
         buttonPanelChange = false; //呼ばれるたびに一旦falseにする
         BackSample = false;   //シーンが変わるたびに一旦Falseにする
-        
+
         if (GameObject.Find("Canvas") == true) //キャンバスがあるかどうかを確認する
         {
             canvas = GameObject.Find("Canvas"); //キャンバスを取得する
@@ -102,7 +102,40 @@ public class GameController : MonoBehaviour
                         "どの動画を見てみようか？"
                     }
                 };
+                break;
 
+            case "StartingScene":
+                startingScenario = new Scenario()
+                {
+                    ScenarioID = "scenarioStartingStart",
+                    Texts = new List<string>()
+                    {
+                        "テスト文章、ダヨ(^_-)-☆",
+                        "ゆっくり試していってネ！" ,
+                        "ってな（藁）"
+                    },
+                    Options = new List<string>() //特殊なオプション
+                    {
+                        "GoSample"
+                    }
+                };
+                break;
+            case "EndingScene": //エンディング用シーンのシナリオ
+                startingScenario = new Scenario()
+                {
+                    ScenarioID = "scenarioEndingStart",
+                    Texts = new List<string>()
+                    {
+                        "スパチャ、投げちゃった、ネ！",
+                        "一旦ここでオワリ……",
+                        "ダヨ(^_-)-☆",
+                        "終"
+                    },
+                    Options = new List<string>() //特殊なオプション
+                    {
+                        "GoStart"
+                    },
+                };
                 break;
             default:
                 startingScenario = null;
@@ -121,6 +154,19 @@ public class GameController : MonoBehaviour
             {
                 SetNextMessage();
             }
+        }
+    }
+
+    void OptionCheck(string options)
+    {
+        switch (options)
+        {
+            case "GoSample":
+                menuselect.StartGame(1);
+                break;
+            case "GoStart":
+                menuselect.StartGame(0);
+                break;
         }
     }
 
@@ -145,7 +191,7 @@ public class GameController : MonoBehaviour
         {
             buttonPanelActivator();
             ExitScenario();
-            if(BackSample == true)
+            if (BackSample == true)
             {
                 menuselect.StartGame(1);
             }
@@ -156,6 +202,15 @@ public class GameController : MonoBehaviour
     {
         scenarioText.text = "";
         index = 0;
+        string optionCheck;
+        if (currentScenario.Options[0] != null)
+        {
+            optionCheck = currentScenario.Options[0];
+        }
+        else
+        {
+            optionCheck = null;
+        }
         if (string.IsNullOrEmpty(currentScenario.NextScenarioID))
         {
             currentScenario = null;
@@ -166,15 +221,19 @@ public class GameController : MonoBehaviour
                 (s => s.ScenarioID == currentScenario.NextScenarioID);
             currentScenario = nextScenario;
         }
+        OptionCheck(optionCheck);
     }
 
     public void buttonPanelActivator()
     {
-        if (buttonPanelChange == false)
+        if (buttonPanel != null)
         {
-            buttonPanel.SetActive(true);
+            if (buttonPanelChange == false)
+            {
+                buttonPanel.SetActive(true);
+            }
+            buttonPanelChange = true;
         }
-        buttonPanelChange = true;
     }
 }
 
