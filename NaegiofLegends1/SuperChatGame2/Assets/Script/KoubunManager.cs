@@ -27,6 +27,7 @@ public class KoubunManager : MonoBehaviour
 
     public void KoubunLoad()
     {
+        superChatNum = 0;
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         if (gameController.currentScenario != null)
         {

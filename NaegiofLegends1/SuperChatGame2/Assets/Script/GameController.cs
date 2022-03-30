@@ -211,7 +211,6 @@ public class GameController : MonoBehaviour
         {
             optionCheck = "null";
         }
-        Debug.Log(optionCheck);
         if (string.IsNullOrEmpty(currentScenario.NextScenarioID))
         {
             currentScenario = null;
