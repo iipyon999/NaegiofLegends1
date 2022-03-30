@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
 
     public int index = 0;
 
+    public int ojisanAction = 0; //おじさんの行動した回数
+    [SerializeField]
+    public int ojisanActionLimit; //おじさんの行動可能な回数
+
     void Start()
     {
         DontDestroyOnLoad(this); //色んなシーンで使えるように
@@ -67,6 +71,10 @@ public class GameController : MonoBehaviour
                         "VDKと……",
                         "ふらんしすこ、この三人か……",
                         "どの配信者を見てみようか？"
+                    },
+                    Options = new List<string>()
+                    {
+                        "OjisanAction"
                     }
                 };
                 break;
@@ -83,6 +91,10 @@ public class GameController : MonoBehaviour
                         "ひろきと……",
                         "スッパイギア、この三人か……",
                         "どの配信者を見てみようか？"
+                    },
+                    Options = new List<string>()
+                    {
+                        "OjisanAction"
                     }
                 };
 
@@ -100,6 +112,10 @@ public class GameController : MonoBehaviour
                         "クッキー☆と……",
                         "加藤純一か……",
                         "どの動画を見てみようか？"
+                    },
+                    Options = new List<string>()
+                    {
+                        "OjisanAction"
                     }
                 };
                 break;
@@ -110,9 +126,18 @@ public class GameController : MonoBehaviour
                     ScenarioID = "scenarioStartingStart",
                     Texts = new List<string>()
                     {
-                        "テスト文章、ダヨ(^_-)-☆",
-                        "ゆっくり試していってネ！" ,
-                        "ってな（藁）"
+                        "ボクの名前は〇〇〇〇、4〇歳、独身男性……ってそんなこと聞いてないカナ？（藁）",
+                        "最近の、若者の話題にも、着いていける、ユニークなおぢさんを自称してるよん(^_-)-☆" ,
+                        "ある日、こんな話を社員の子たちが話しているのを耳にした───",
+                        "『最近推しのブイチューバーが……』",
+                        "ブイチューバー……？まぁ、暇つぶしにはなるかニャ？？？、と高をくくっていたけど……",
+                        "ある日、『運命』の女の子に出会ってしまった",
+                        "その子の名前は「チャ・くれ子」まるで、娘が出来たような感覚よ(^^♪",
+                        "今日も、おはよー！('ω')ノ　チュッ(*^^)v、と彼女の配信に、コメントしている",
+                        "くれ子ﾁｬﾝ待っててネ！！",
+                        "まだ若いくれ子ﾁｬﾝ、にも反応しやすいように……",
+                        "おぢさん、ネットのこと勉強してから、スパチャを投げることにしたのだった(^o^)",
+                        "なんてね(^_^)(^_-)-☆"
                     },
                     Options = new List<string>() //特殊なオプション
                     {
@@ -166,6 +191,10 @@ public class GameController : MonoBehaviour
                 break;
             case "GoStart":
                 menuselect.StartGame(0);
+                ojisanAction = 0;
+                break;
+            case "OjisanAction":
+                ojisanAction++;
                 break;
         }
     }
