@@ -203,14 +203,15 @@ public class GameController : MonoBehaviour
         scenarioText.text = "";
         index = 0;
         string optionCheck;
-        if (currentScenario.Options[0] != null)
+        if (currentScenario.Options != null)
         {
             optionCheck = currentScenario.Options[0];
         }
         else
         {
-            optionCheck = null;
+            optionCheck = "null";
         }
+        Debug.Log(optionCheck);
         if (string.IsNullOrEmpty(currentScenario.NextScenarioID))
         {
             currentScenario = null;
@@ -221,7 +222,10 @@ public class GameController : MonoBehaviour
                 (s => s.ScenarioID == currentScenario.NextScenarioID);
             currentScenario = nextScenario;
         }
-        OptionCheck(optionCheck);
+        if (optionCheck != "null")
+        {
+            OptionCheck(optionCheck);
+        }
     }
 
     public void buttonPanelActivator()
