@@ -33,6 +33,24 @@ public class GameController : MonoBehaviour
         koubunManager = GameObject.Find("KoubunManager").GetComponent<KoubunManager>();
     }
 
+    public void GameControllerCounting() //ゲームコントローラーが重複して作られないように破壊する
+    {
+        GameObject[] gameControllers;
+        gameControllers = GameObject.FindGameObjectsWithTag("GameController");
+        List<GameObject> gameControllerCounts = new List<GameObject>(); 
+        for(int i = 0; i < gameControllers.Length; i++)
+        {
+            gameControllerCounts.Add(gameControllers[i]);
+        }
+        int remainNum = gameControllerCounts.Count;
+        for(; remainNum > 1;)
+        {
+            Destroy(gameControllerCounts[remainNum-1]);
+            gameControllerCounts.RemoveAt(remainNum-1);
+            remainNum = gameControllerCounts.Count;
+        }
+    }
+
     public void StartingScenarioSet()
     {
         buttonPanelChange = false; //呼ばれるたびに一旦falseにする

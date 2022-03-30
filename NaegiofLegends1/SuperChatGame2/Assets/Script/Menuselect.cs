@@ -28,6 +28,7 @@ public class Menuselect : MonoBehaviour
 
     void SceneLoaded(Scene scene, LoadSceneMode mode) //シーン切り替えで呼びたい関数
     {
+        gameController.GameControllerCounting();//ゲームコントローラー数確認
         gameController.StartingScenarioSet(); //始まりのシナリオセッティング
     }
 }
