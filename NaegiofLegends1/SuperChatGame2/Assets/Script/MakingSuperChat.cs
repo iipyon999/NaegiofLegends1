@@ -91,10 +91,10 @@ public class MakingSuperChat : MonoBehaviour
     void OjisanMoneyCheck()
     {
         ojisanMoneyStock = ojisanActionManager.ojisanMoney - (gameController.superChatSendCount * 10000);
-        OjisanMoneyText.text = "おぢさんのおサイフの中身(/ω＼)\n" + ojisanMoneyStock;
+        OjisanMoneyText.text = "おぢさんのおサイフの中身\nｷｬｯ(/ω＼)\n" + ojisanMoneyStock;
         if (ojisanMoneyStock <= 0)
         {
-            SendText.text = "お金なくなっちゃった（涙）";
+            SendText.text = "おサイフカラッポ（涙）";
             Destroy(GetComponent<MakingSuperChat>());
         }
 

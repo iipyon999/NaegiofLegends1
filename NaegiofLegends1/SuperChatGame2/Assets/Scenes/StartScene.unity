@@ -173,6 +173,7 @@ MonoBehaviour:
   index: 0
   ojisanAction: 0
   ojisanActionLimit: 5
+  superChatSendCount: 0
 --- !u!114 &26440566
 MonoBehaviour:
   m_ObjectHideFlags: 0
