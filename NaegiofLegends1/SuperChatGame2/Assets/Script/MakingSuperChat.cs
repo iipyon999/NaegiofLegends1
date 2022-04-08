@@ -23,6 +23,9 @@ public class MakingSuperChat : MonoBehaviour
     int superChatCount;
     int ojisanMoneyStock;
 
+    [SerializeField]
+    public List<Koubun> nowSuperChat = new List<Koubun>(); //実際に選択された構文
+
     private void Start()
     {
         koubunM = GameObject.Find("KoubunManager");
@@ -58,8 +61,11 @@ public class MakingSuperChat : MonoBehaviour
                 Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
                 if (text.text == chekingKoubunName)
                 {
+                    Koubun koubun = KoubunManager.koubunChoiceList[i];
+                    Debug.Log(koubun);
+                    nowSuperChat.Add(koubun);
+                    Debug.Log(nowSuperChat.Count);
                     superChatText.text = superChatText.text + KoubunManager.koubunChoiceList[i].naiyou;
-                    koubunManager.superChatPoint += KoubunManager.koubunChoiceList[i].point;
                 }
             }
         }
@@ -69,23 +75,19 @@ public class MakingSuperChat : MonoBehaviour
     {
         superChatText = GameObject.Find("SuperChatText").GetComponent<Text>();
         koubunManager.superChatNum = 0;
-        koubunManager.superChatPoint = 0;
+        nowSuperChat.Clear();
         superChatText.text = "";
     }
 
     public void SendSuperChat()
     {
-        superChatText = GameObject.Find("SuperChatText").GetComponent<Text>();
-        responseManager.Response(koubunManager.superChatPoint);
-        koubunManager.superChatNum = 0;
-        koubunManager.superChatPoint = 0;
-        superChatText.text = "";
         gameController.superChatSendCount++;
         if(gameController.superChatSendCount > 0)
         {
             endingButton.SetActive(true);
         }
         OjisanMoneyCheck();
+        StartCoroutine("ResponseMake");
     }
 
     void OjisanMoneyCheck()
@@ -97,6 +99,15 @@ public class MakingSuperChat : MonoBehaviour
             SendText.text = "おサイフカラッポ（涙）";
             Destroy(GetComponent<MakingSuperChat>());
         }
+    }
 
+    IEnumerator ResponseMake()
+    {
+        responseManager.ResponseMaking();
+        while(responseManager.checking == false)
+        {
+            yield return null;
+        }
+        ResetSuperChat();
     }
 }

@@ -7,9 +7,11 @@ public class Koubun
 {
     public int ID;//構文のID
     public string name; //構文の名前
-    public string scenarioID; //構文のジャンル。手にいれられる場所などに依存？
+    public string scenarioID; //構文を手に入れられる場所
     public string naiyou; //構文の中身
-    public int point;
+    public int funnyPoint; //面白さを見るポイント
+    public int kimoPoint; //不快度を見るポイント
+    public string genre; //特定の反応を返すためのジャンル
     /*
     public int ojisanPoint; //オジサンポイント
     public int kimoPoint; //気持ち悪さを見るキモポイント
@@ -49,7 +51,13 @@ public class KoubunLibrary : MonoBehaviour
                         koubunList[i].naiyou = koubunTextDataList[i, n];
                         break;
                     case 4:
-                        koubunList[i].point = int.Parse(koubunTextDataList[i, n]);
+                        koubunList[i].funnyPoint = int.Parse(koubunTextDataList[i, n]);
+                        break;
+                    case 5:
+                        koubunList[i].kimoPoint = int.Parse(koubunTextDataList[i, n]);
+                        break;
+                    case 6:
+                        koubunList[i].genre = koubunTextDataList[i, n];
                         break;
                     default: Debug.Log("error");
                         break;
