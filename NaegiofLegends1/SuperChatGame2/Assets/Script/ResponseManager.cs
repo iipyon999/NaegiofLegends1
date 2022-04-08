@@ -104,7 +104,11 @@ public class ResponseManager : MonoBehaviour
         }
         for(int i = 0; i < botCount.Count; i++)
         {
-            if (botCount[0] != botCount[i] && botCount.Count > 3)
+            if(botCount.Count < 2)
+            {
+                bot = false;
+            }
+            if (botCount[0] != botCount[i])
             {
                 bot = false;
             }

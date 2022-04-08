@@ -48,7 +48,7 @@ public class MakingSuperChat : MonoBehaviour
         }
     }
 
-    public void SuperChat()
+    public void SuperChat(GameObject button)
     {
         string chekingKoubunName;
         koubunManager.superChatNum++; //一定回数までしか打てないように。KoubunManagerに数字アリ
@@ -57,8 +57,7 @@ public class MakingSuperChat : MonoBehaviour
             for (int i = 0; i < KoubunManager.koubunChoiceList.Count; i++)
             {
                 chekingKoubunName = KoubunManager.koubunChoiceList[i].name;
-                GameObject buttons = this.gameObject;
-                Text text = buttons.transform.Find("Text").gameObject.GetComponent<Text>();
+                Text text = button.transform.Find("Text").gameObject.GetComponent<Text>();
                 if (text.text == chekingKoubunName)
                 {
                     Koubun koubun = KoubunManager.koubunChoiceList[i];
@@ -88,6 +87,7 @@ public class MakingSuperChat : MonoBehaviour
         }
         OjisanMoneyCheck();
         StartCoroutine("ResponseMake");
+
     }
 
     void OjisanMoneyCheck()
