@@ -213,6 +213,7 @@ public class GameController : MonoBehaviour
             case "GoStart":
                 menuselect.StartGame(0);
                 ojisanAction = 0;
+                Destroy(this.gameObject);
                 break;
             case "OjisanAction":
                 ojisanAction++;

@@ -168,6 +168,9 @@ public class ResponseManager : MonoBehaviour
             goto END;
         }
 
+        responseText.text = responseTextList[2].naiyou;
+        goto END;
+
     END:
         checking = true;
 

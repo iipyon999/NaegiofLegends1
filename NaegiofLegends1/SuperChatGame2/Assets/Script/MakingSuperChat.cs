@@ -61,9 +61,7 @@ public class MakingSuperChat : MonoBehaviour
                 if (text.text == chekingKoubunName)
                 {
                     Koubun koubun = KoubunManager.koubunChoiceList[i];
-                    Debug.Log(koubun);
                     nowSuperChat.Add(koubun);
-                    Debug.Log(nowSuperChat.Count);
                     superChatText.text = superChatText.text + KoubunManager.koubunChoiceList[i].naiyou;
                 }
             }
