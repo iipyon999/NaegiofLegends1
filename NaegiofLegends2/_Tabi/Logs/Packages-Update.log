@@ -1,14 +1,14 @@
 
-=== Sat Jun 25 15:45:40 2022
+=== Wed Aug 11 20:25:20 2021
 
 Packages were changed.
-Update Mode: resetToDefaultDependencies
+Update Mode: mergeDefaultDependencies
 
 The following packages were added:
-  com.unity.collab-proxy@1.10.2
+  com.unity.collab-proxy@1.6.0
   com.unity.ide.rider@1.2.1
-  com.unity.ide.visualstudio@2.0.11
-  com.unity.ide.vscode@1.2.4
+  com.unity.ide.visualstudio@2.0.9
+  com.unity.ide.vscode@1.2.3
   com.unity.modules.ai@1.0.0
   com.unity.modules.androidjni@1.0.0
   com.unity.modules.animation@1.0.0
@@ -40,7 +40,30 @@ The following packages were added:
   com.unity.modules.vr@1.0.0
   com.unity.modules.wind@1.0.0
   com.unity.modules.xr@1.0.0
-  com.unity.test-framework@1.1.29
+  com.unity.test-framework@1.1.27
   com.unity.textmeshpro@2.1.6
   com.unity.timeline@1.2.18
   com.unity.ugui@1.0.0
+The following packages were updated:
+  com.unity.2d.animation from version 3.2.4 to 3.2.9
+  com.unity.2d.pixel-perfect from version 2.0.4 to 2.1.0
+  com.unity.2d.psdimporter from version 2.1.5 to 2.1.8
+  com.unity.2d.spriteshape from version 3.0.13 to 3.0.16
+
+=== Thu Sep  9 00:25:10 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.6.0 to 1.8.0
+
+=== Fri Jun 24 21:14:51 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.2d.spriteshape from version 3.0.16 to 3.0.17
+  com.unity.collab-proxy from version 1.8.0 to 1.10.2
+  com.unity.test-framework from version 1.1.27 to 1.1.29
