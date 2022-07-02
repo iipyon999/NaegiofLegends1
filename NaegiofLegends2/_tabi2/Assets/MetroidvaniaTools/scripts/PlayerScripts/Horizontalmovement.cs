@@ -25,6 +25,7 @@ namespace MetroidvaniaTools
         private float horizontalInput;//左右入力
         private float runTime;//走っている時間
         private float originalGravityForceMultiplier;//最初の重力
+        private bool isDash;//走っているか
 
         protected override void Initialization()
         {
@@ -35,11 +36,11 @@ namespace MetroidvaniaTools
         // Update is called once per frame
         protected virtual void Update()
         {
-            MovementPressed();
-            SprintingHeld();
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            isDash = Input.GetKey(KeyCode.LeftShift);
         }
 
-        //左右入力を検知してboolを返す
+       /* //左右入力を検知してboolを返す
         public virtual bool MovementPressed()
         {
             if (Input.GetAxisRaw("Horizontal") != 0)
@@ -59,19 +60,19 @@ namespace MetroidvaniaTools
             }
             else
                 return false;
-        }
+        }*/
 
         protected virtual void FixedUpdate()
         {
             Movement();
-            RemoveFromGrapple();
-            LadderMovement();
+            //RemoveFromGrapple();
+            //  LadderMovement();
         }
 
         //移動の処理
         protected virtual void Movement()
         {
-            if (MovementPressed())
+            if (horizontalInput != 0)
             {
                 acceleration = MaxSpeed / timeTillMaxSpeed;
                 runTime += Time.deltaTime;
@@ -84,53 +85,57 @@ namespace MetroidvaniaTools
                 runTime = 0;
                 currentSpeed = 0;
             }
-            SpeedMultiplier();
+            if (isDash)//ダッシュボタン押下時
+            {
+                currentSpeed *= SprintMultiplier;
+            }
             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
         }
 
-        protected virtual void RemoveFromGrapple()
-        {
-            if (grapplingHook.removed)
-            {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, Time.deltaTime * 500);
-                if(transform.rotation == Quaternion.identity)
-                {
-                    grapplingHook.removed = false;
-                    rb.freezeRotation = true;
-                }
-            }
-        }
+        /* protected virtual void RemoveFromGrapple()
+         {
+             if (grapplingHook.removed)
+             {
+                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, Time.deltaTime * 500);
+                 if(transform.rotation == Quaternion.identity)
+                 {
+                     grapplingHook.removed = false;
+                     rb.freezeRotation = true;
+                 }
+             }
+         }*/
 
-        protected virtual void LadderMovement()
-        {
-            if(character.isOnLadder && currentLadder != null)
-            {
-                jump.gravityForceMultiplier = 0;
-                //rb.bodyType = RigidbodyType2D.Kinematic;
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                if (Input.GetButton("Up"))
-                {
-                    rb.velocity = new Vector2(rb.velocity.x,ladderSpeed);
-                    //transform.position = Vector2.MoveTowards(transform.position, currentLadder.GetComponent<Ladder>().topOfLadder, ladderSpeed * Time.deltaTime);
-                    return;
-                }
-                if (Input.GetButton("Down"))
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, -ladderSpeed);
-                }
-            }
-            else
-            {
-                jump.gravityForceMultiplier = originalGravityForceMultiplier;
-                //rb.bodyType = RigidbodyType2D.Dynamic;
-            }
-            
-        }
+        /* protected virtual void LadderMovement()
+         {
+             if(character.isOnLadder && currentLadder != null)
+             {
+                 jump.gravityForceMultiplier = 0;
+                 //rb.bodyType = RigidbodyType2D.Kinematic;
+                 rb.velocity = new Vector2(rb.velocity.x, 0);
+                 if (Input.GetButton("Up"))
+                 {
+                     rb.velocity = new Vector2(rb.velocity.x,ladderSpeed);
+                     //transform.position = Vector2.MoveTowards(transform.position, currentLadder.GetComponent<Ladder>().topOfLadder, ladderSpeed * Time.deltaTime);
+                     return;
+                 }
+                 if (Input.GetButton("Down"))
+                 {
+                     rb.velocity = new Vector2(rb.velocity.x, -ladderSpeed);
+                 }
+             }
+             else
+             {
+                 jump.gravityForceMultiplier = originalGravityForceMultiplier;
+                 //rb.bodyType = RigidbodyType2D.Dynamic;
+             }
+
+         }*/
 
         //スピードが速くなりすぎないようにする
         protected virtual void SpeedControl()
         {
-            if (currentSpeed > 0)
+            currentSpeed = Mathf.Clamp(currentSpeed, -MaxSpeed, MaxSpeed);
+            /*if (currentSpeed > 0)
             {
                 if (currentSpeed > MaxSpeed)
                 {
@@ -143,20 +148,21 @@ namespace MetroidvaniaTools
                 {
                     currentSpeed = -MaxSpeed;
                 }
-            }
+            }*/
         }
 
         //ダッシュ時は速度を係数分だけ乗算する
         protected virtual void SpeedMultiplier()
         {
-            if (SprintingHeld())
+            if (Input.GetKey(KeyCode.LeftShift))//ダッシュボタン押下時
             {
                 currentSpeed *= SprintMultiplier;
             }
-            if (grapplingHook.connected)
+            /*if (grapplingHook.connected)
             {
 
-                if (Input.GetButton("Up") || Input.GetButton("Down") || AroundCollisionCheck() || character.isGrounded || rb.transform.position.y > grapplingHook.objectConnectedTo.y)
+                if (Input.GetButton("Up") || Input.GetButton("Down") || AroundCollisionCheck() 
+                    || character.isGrounded || rb.transform.position.y > grapplingHook.objectConnectedTo.y)
                 {
                     return;
                 }
@@ -170,10 +176,9 @@ namespace MetroidvaniaTools
                 {
                     currentSpeed *= -hookSpeedMultiplier;
                 }
-                */
+                
                 //rb.rotation -= currentSpeed;
-            }
+            }*/
         }
-
     }
 }
