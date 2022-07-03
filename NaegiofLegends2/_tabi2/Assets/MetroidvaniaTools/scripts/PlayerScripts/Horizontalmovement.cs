@@ -88,6 +88,7 @@ namespace MetroidvaniaTools
             if (isDash)//ダッシュボタン押下時
             {
                 currentSpeed *= SprintMultiplier;
+                isDash = false;
             }
             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
         }
